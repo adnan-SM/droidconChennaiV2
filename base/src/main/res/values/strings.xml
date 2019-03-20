@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Droidcon Chennai</string>
+    <string name="schedule">Schedule</string>
+    <string name="favorites">Favorites</string>
+    <string name="speakers">Speakers</string>
+    <string name="info">Info</string>
+</resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <View
+            android:id="@+id/skeleton_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            style="@style/Skeleton.Round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+            android:id="@+id/skeletion_avatarName"
+            style="@style/Skeleton.Rectangle"
+            android:layout_width="52dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:minLines="1"
+            android:scrollHorizontally="true"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skeleton_avatar"
+            tools:text="Avatar Nameasdasd" />
+
+    <View
+            android:id="@+id/skeleton_desc"
+            style="@style/Skeleton.Rectangle"
+            android:layout_width="34dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:minLines="1"
+            android:scrollHorizontally="true"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/skeletion_avatarName"
+            app:layout_constraintStart_toStartOf="@+id/skeletion_avatarName"
+            app:layout_constraintTop_toBottomOf="@+id/skeletion_avatarName"
+            tools:text="Occupationas" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
