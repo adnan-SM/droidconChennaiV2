@@ -4,6 +4,7 @@ buildscript {
     ext.kotlin_version = '1.3.21'
     repositories {
         google()
+        mavenCentral()
         jcenter()
         
     }
@@ -20,6 +21,7 @@ apply from: 'dependencies.gradle'
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
         
     }

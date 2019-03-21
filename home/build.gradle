@@ -36,3 +36,7 @@ dependencies {
     implementation project(':base')
 
 }
+
+repositories {
+    mavenCentral()
+}
