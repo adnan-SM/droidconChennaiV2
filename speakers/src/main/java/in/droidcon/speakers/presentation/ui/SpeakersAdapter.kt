@@ -1,5 +1,6 @@
 package `in`.droidcon.speakers.presentation.ui
 
+import `in`.droidcon.data.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.model.SpeakerItem
 import android.view.LayoutInflater
@@ -14,7 +15,7 @@ import com.bumptech.glide.Glide
 
 class SpeakersAdapter(
     private val listItemClickListener: ListItemClickListener):
-    ListAdapter<SpeakerItem, SpeakersAdapter.SpeakersHolder>(SPEAKER_COMPARATOR) {
+    ListAdapter<SpeakerEntity, SpeakersAdapter.SpeakersHolder>(SPEAKER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpeakersHolder {
         return SpeakersHolder(
@@ -32,7 +33,7 @@ class SpeakersAdapter(
         private val speakerNameView: TextView = itemView.findViewById(R.id.speakerNameView)
         private val speakerOrgView: TextView = itemView.findViewById(R.id.speakerOrgView)
 
-        fun bind(speakerItem: SpeakerItem, position: Int) {
+        fun bind(speakerItem: SpeakerEntity, position: Int) {
             speakerNameView.text = speakerItem.speakerName
             speakerOrgView.text = speakerItem.speakerOrg
             itemView.setOnClickListener { listItemClickListener.onSpeakerItemClicked(speakerItem) }
@@ -47,13 +48,13 @@ class SpeakersAdapter(
 
     companion object {
 
-        private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerItem>() {
+        private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerEntity>() {
 
-            override fun areItemsTheSame(oldItem: SpeakerItem, newItem: SpeakerItem): Boolean {
+            override fun areItemsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
                 return oldItem.speakerName == newItem.speakerName
             }
 
-            override fun areContentsTheSame(oldItem: SpeakerItem, newItem: SpeakerItem): Boolean {
+            override fun areContentsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
                 return oldItem == newItem
             }
 
@@ -61,6 +62,6 @@ class SpeakersAdapter(
     }
 
     interface ListItemClickListener {
-        fun onSpeakerItemClicked(speakerItem: SpeakerItem)
+        fun onSpeakerItemClicked(speakerItem: SpeakerEntity)
     }
 }

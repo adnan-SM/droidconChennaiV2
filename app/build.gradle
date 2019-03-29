@@ -23,6 +23,8 @@ android {
 }
 
 dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
@@ -33,5 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation project(':speakers')
     implementation project(':home')
-
+    implementation project(':base')
 }
+
+apply plugin: 'com.google.gms.google-services'

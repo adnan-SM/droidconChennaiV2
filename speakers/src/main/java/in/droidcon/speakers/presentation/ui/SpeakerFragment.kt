@@ -2,6 +2,7 @@ package `in`.droidcon.speakers.presentation.ui
 
 import `in`.droidcon.base.core.BaseFragment
 import `in`.droidcon.base.event.EventObserver
+import `in`.droidcon.data.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.state.TaskState
 import `in`.droidcon.speakers.model.SpeakerItem
@@ -38,7 +39,7 @@ class SpeakerFragment : BaseFragment(), SpeakersAdapter.ListItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        observeForSpeakers()
+        getSpeakerList()
     }
 
     private fun setupRecyclerView() {
@@ -48,7 +49,7 @@ class SpeakerFragment : BaseFragment(), SpeakersAdapter.ListItemClickListener {
         }
     }
 
-    private fun observeForSpeakers() {
+    private fun getSpeakerList() {
         speakersViewModel.getSpeakersListState().observe(viewLifecycleOwner,
             EventObserver { state ->
                 when (state) {
@@ -59,7 +60,7 @@ class SpeakerFragment : BaseFragment(), SpeakersAdapter.ListItemClickListener {
 
                     is TaskState.Success<*> -> {
                         val list = state.result as List<*>
-                        val speakerList = list.map { it as SpeakerItem }
+                        val speakerList = list.map { it as SpeakerEntity }
                         speakersAdapter.submitList(speakerList)
                         skeleton.hide()
                     }
@@ -75,13 +76,13 @@ class SpeakerFragment : BaseFragment(), SpeakersAdapter.ListItemClickListener {
         skeleton = Skeleton.bind(speakerListView)
             .adapter(speakersAdapter)
             .load(R.layout.skeleton_speaker_item)
-            .shimmer(false)
+            .shimmer(true)
             .count(6)
             .color(R.color.textSecondary)
             .show()
     }
 
-    override fun onSpeakerItemClicked(speakerItem: SpeakerItem) {
+    override fun onSpeakerItemClicked(speakerItem: SpeakerEntity) {
         fragmentManager?.let {
 //            SpeakerDetailFragment().apply {
 //                arguments = Bundle().apply {

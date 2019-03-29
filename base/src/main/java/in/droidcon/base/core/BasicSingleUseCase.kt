@@ -1,6 +1,6 @@
 package `in`.droidcon.base.core
 
-import `in`.droidcon.speakers.ExecutionThread
+import `in`.droidcon.base.thread.ExecutionThread
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1049880923395",
+    "firebase_url": "https://droidcon-india-chennai.firebaseio.com",
+    "project_id": "droidcon-india-chennai",
+    "storage_bucket": "droidcon-india-chennai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049880923395:android:6d057caa7491f0e1",
+        "android_client_info": {
+          "package_name": "in.droidcon.chennai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049880923395-qree9vgmvote6pjd143sjgp37658qnre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyemV7kafWBPFGCQ3xjPTC4b26tqSe_DA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

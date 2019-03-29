@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_home"
+            app:startDestination="@id/speakersFragment">
+
+    <fragment android:id="@+id/speakersFragment"
+              android:name="in.droidcon.speakers.presentation.ui.SpeakerFragment"
+              android:label="fragment_speakers"
+              tools:layout="@layout/fragment_speakers"/>
+
+    <!--<fragment android:id="@+id/scheduleFragment"-->
+              <!--android:name="in.droidcon.app.feature.schedule.ScheduleFragment"-->
+              <!--android:label="fragment_schedule"-->
+              <!--tools:layout="@layout/fragment_schedule"/>-->
+
+</navigation>

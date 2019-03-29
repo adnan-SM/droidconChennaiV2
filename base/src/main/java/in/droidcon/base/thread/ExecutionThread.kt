@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers
+package `in`.droidcon.base.thread
 
 import io.reactivex.Scheduler
 
