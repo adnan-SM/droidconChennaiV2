@@ -7,10 +7,30 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <LinearLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="fill_parent"
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/nav_host"
+            app:navGraph="@navigation/navigation_home"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+    />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:fitsSystemWindows="true"
+            android:background="@color/colorPrimaryDark"
+            app:itemIconTint="@drawable/bottom_nav_state"
+            app:itemTextColor="@drawable/bottom_nav_state"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

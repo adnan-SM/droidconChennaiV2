@@ -11,8 +11,8 @@
               tools:layout="@layout/fragment_speakers"/>
 
     <!--<fragment android:id="@+id/scheduleFragment"-->
-              <!--android:name="in.droidcon.app.feature.schedule.ScheduleFragment"-->
-              <!--android:label="fragment_schedule"-->
-              <!--tools:layout="@layout/fragment_schedule"/>-->
+    <!--android:name="in.droidcon.app.feature.schedule.ScheduleFragment"-->
+    <!--android:label="fragment_schedule"-->
+    <!--tools:layout="@layout/fragment_schedule"/>-->
 
 </navigation>
