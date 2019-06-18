@@ -1,8 +1,7 @@
 package `in`.droidcon.speakers.presentation.ui
 
-import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.R
-import `in`.droidcon.speakers.model.SpeakerItem
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
