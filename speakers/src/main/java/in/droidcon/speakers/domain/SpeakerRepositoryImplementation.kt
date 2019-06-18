@@ -1,22 +1,19 @@
 package `in`.droidcon.speakers.domain
 
-import `in`.droidcon.base.repo.remote.ServiceFactory
-import `in`.droidcon.speakers.BuildConfig
 import `in`.droidcon.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.remote.SpeakerMapper
 import `in`.droidcon.speakers.remote.SpeakerService
 import io.reactivex.Single
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
 /**
  * @author Adnan A M
  * @since  20/03/19
  */
-class SpeakerRepositoryImplementation : SpeakerRepository {
+class SpeakerRepositoryImplementation : SpeakerRepository, KoinComponent {
 
-    //TODO: DI with Koin
-    private val speakerService: SpeakerService by lazy {
-        ServiceFactory.makeService<SpeakerService>(BuildConfig.DEBUG)
-    }
+    private val speakerService: SpeakerService by inject()
 
     val speakersCache: List<SpeakerEntity>? = null
 
