@@ -50,7 +50,7 @@ class SpeakersAdapter(
         private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerEntity>() {
 
             override fun areItemsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
-                return oldItem.speakerName == newItem.speakerName
+                return oldItem.speakerId == newItem.speakerId
             }
 
             override fun areContentsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
