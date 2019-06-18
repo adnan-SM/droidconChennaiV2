@@ -65,34 +65,46 @@ ext {
     mockitoVersion = '2.0.0-RC3'
     robolectricVersion = '4.1'
 
+    //remote
+    gsonVersion = '2.8.1'
+    okHttpVersion = '3.8.1'
+    androidAnnotationsVersion = '21.0.3'
+    retrofitVersion = '2.3.0'
 
 
     appDependencies = [
-            kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
-            appCompat     : "androidx.appcompat:appcompat:$appCompatVersion",
-            material      : "com.google.android.material:material:$materialVersion",
-            koin          : "org.koin:koin-android:$koinVersion",
-            koinViewModel : "org.koin:koin-android-viewmodel:$koinVersion",
-            timber        : "com.jakewharton.timber:timber:$timberVersion",
-            navFragment   : "android.arch.navigation:navigation-fragment-ktx:$navigationVersion",
-            navUi         : "android.arch.navigation:navigation-ui-ktx:$navigationVersion",
-            fragment      : "androidx.fragment:fragment-ktx:$fragmentVersion",
-            rxAndroid     : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-            rxKotlin      : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
-            archRuntime   : "androidx.arch.core:core-runtime:$lifecycleVersion",
-            archExtension : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
-            archCompiler  : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
-            constraint    : "androidx.constraintlayout:constraintlayout:$constraintVersion",
-            ktx           : "androidx.core:core-ktx:$ktxVersion",
-            glide         : "com.github.bumptech.glide:glide:$glideVersion",
-            glideCompiler : "com.github.bumptech.glide:compiler:$glideVersion",
-            epoxy         : "com.airbnb.android:epoxy:$epoxyVersion",
-            epoxyProcessor: "com.airbnb.android:epoxy-processor:$epoxyVersion",
-            work          : "android.arch.work:work-runtime:$workVersion",
-            lottie        : "com.airbnb.android:lottie:$lottieVersion",
-            debugDb       : "com.amitshekhar.android:debug-db:$debugDbVersion",
-            skeleton      : "com.ethanhua:skeleton:$skeletonVersion",
-            shimmer       : "io.supercharge:shimmerlayout:$shimmerVersion"
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            appCompat         : "androidx.appcompat:appcompat:$appCompatVersion",
+            material          : "com.google.android.material:material:$materialVersion",
+            koin              : "org.koin:koin-android:$koinVersion",
+            koinViewModel     : "org.koin:koin-android-viewmodel:$koinVersion",
+            timber            : "com.jakewharton.timber:timber:$timberVersion",
+            navFragment       : "android.arch.navigation:navigation-fragment-ktx:$navigationVersion",
+            navUi             : "android.arch.navigation:navigation-ui-ktx:$navigationVersion",
+            fragment          : "androidx.fragment:fragment-ktx:$fragmentVersion",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            archRuntime       : "androidx.arch.core:core-runtime:$lifecycleVersion",
+            archExtension     : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            archCompiler      : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
+            constraint        : "androidx.constraintlayout:constraintlayout:$constraintVersion",
+            ktx               : "androidx.core:core-ktx:$ktxVersion",
+            glide             : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler     : "com.github.bumptech.glide:compiler:$glideVersion",
+            epoxy             : "com.airbnb.android:epoxy:$epoxyVersion",
+            epoxyProcessor    : "com.airbnb.android:epoxy-processor:$epoxyVersion",
+            work              : "android.arch.work:work-runtime:$workVersion",
+            lottie            : "com.airbnb.android:lottie:$lottieVersion",
+            debugDb           : "com.amitshekhar.android:debug-db:$debugDbVersion",
+            skeleton          : "com.ethanhua:skeleton:$skeletonVersion",
+            shimmer           : "io.supercharge:shimmerlayout:$shimmerVersion",
+            gson              : "com.google.code.gson:gson:${gsonVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            okHttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
 
     ]
 

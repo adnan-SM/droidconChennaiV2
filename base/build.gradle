@@ -54,9 +54,15 @@ dependencies {
     api appDependencies.lottie
     api appDependencies.skeleton
     api appDependencies.shimmer
+    api firebaseDependencies.firestore
+    api appDependencies.gson
+    api appDependencies.okHttp
+    api appDependencies.okHttpLogger
+    api appDependencies.retrofit
+    api appDependencies.retrofitConverter
+    api appDependencies.retrofitAdapter
     kapt appDependencies.glide
     kapt appDependencies.archCompiler
-    api firebaseDependencies.firestore
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
