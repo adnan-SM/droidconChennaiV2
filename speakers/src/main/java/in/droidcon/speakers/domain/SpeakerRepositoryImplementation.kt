@@ -20,9 +20,7 @@ class SpeakerRepositoryImplementation : SpeakerRepository, KoinComponent {
     override fun getSpeakers(): Single<List<SpeakerEntity>> {
         return if (speakersCache == null) {
             speakerService.getSpeakers().map {
-                it.map {
-                    SpeakerMapper.mapFromRemote(it)
-                }
+                it.map(SpeakerMapper::mapFromRemote)
             }
         } else {
             Single.defer {

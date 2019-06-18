@@ -23,6 +23,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", "\"https://sessionize.com/api/v2/e94o5exw/view/\""
+        }
+
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://sessionize.com/api/v2/jl4ktls0/view/\""
         }
     }
 

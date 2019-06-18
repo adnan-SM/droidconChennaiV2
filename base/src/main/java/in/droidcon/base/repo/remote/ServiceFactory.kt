@@ -1,5 +1,7 @@
 package `in`.droidcon.base.repo.remote
 
+import `in`.droidcon.KeyConstants
+import `in`.droidcon.base.BuildConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -16,30 +18,21 @@ object ServiceFactory {
      * and its related dependencies, such as OkHttpClient, Gson, etc.
      */
     inline fun <reified ServiceClass> makeService(isDebug: Boolean): ServiceClass = makeService(
-        isDebug,
         makeOkHttpClient(
             makeLoggingInterceptor(isDebug)
         ), makeGson()
     )
 
     inline fun <reified ServiceClass> makeService(
-        isDebug: Boolean,
         okHttpClient: OkHttpClient,
         gson: Gson
-    ): ServiceClass = makeRetrofit(isDebug, okHttpClient, gson).create(ServiceClass::class.java)
+    ): ServiceClass = makeRetrofit(okHttpClient, gson).create(ServiceClass::class.java)
 
     fun makeRetrofit(
-        isDebug: Boolean,
         okHttpClient: OkHttpClient,
         gson: Gson
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(
-            if (isDebug) {
-                "https://sessionize.com/api/v2/jl4ktls0/view/"
-            } else {
-                "https://sessionize.com/api/v2/e94o5exw/view/"
-            }
-        )
+        .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
@@ -47,8 +40,8 @@ object ServiceFactory {
 
     fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
-        .connectTimeout(120, TimeUnit.SECONDS)
-        .readTimeout(120, TimeUnit.SECONDS)
+        .connectTimeout(KeyConstants.NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+        .readTimeout(KeyConstants.NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
         .build()
 
     fun makeGson(): Gson = GsonBuilder()

@@ -98,13 +98,13 @@ ext {
             debugDb           : "com.amitshekhar.android:debug-db:$debugDbVersion",
             skeleton          : "com.ethanhua:skeleton:$skeletonVersion",
             shimmer           : "io.supercharge:shimmerlayout:$shimmerVersion",
-            gson              : "com.google.code.gson:gson:${gsonVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
-            okHttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-            okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            gson              : "com.google.code.gson:gson:$gsonVersion",
+            androidAnnotations: "com.android.support:support-annotations:$androidAnnotationsVersion",
+            okHttp            : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverter : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     ]
 
