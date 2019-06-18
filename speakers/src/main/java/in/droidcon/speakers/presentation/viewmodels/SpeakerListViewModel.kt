@@ -23,15 +23,15 @@ class SpeakerListViewModel(private val getSpeakers: GetAllSpeakers): BaseViewMod
         getSpeakers.execute()
             .doOnSubscribe {
                 speakersListState.postValue(Event(TaskState.Loading))
-                Timber.i("Firestore loading")
+                Timber.i("API loading")
             }
             .subscribe({ list ->
                 speakersListState.postValue(Event(TaskState.Success(list)))
-                Timber.i("Firestore fetching speakers successful")
+                Timber.i("API fetching speakers successful")
             }, { throwable ->
                 val errorMessage = throwable.message ?: ERROR_MESSAGE
                 speakersListState.postValue(Event(TaskState.Failed(errorMessage)))
-                Timber.i("Firestore fetching speakers failed")
+                Timber.i("API fetching speakers failed")
             })
             .addTo(disposables)
     }

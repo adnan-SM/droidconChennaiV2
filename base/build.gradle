@@ -8,7 +8,6 @@ android {
     compileSdkVersion 28
 
 
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
@@ -60,7 +59,8 @@ dependencies {
     api appDependencies.lottie
     api appDependencies.skeleton
     api appDependencies.shimmer
-    api firebaseDependencies.firestore
+    //commented firestore, as it's not required at this point, feel free to uncomment if you require it
+    //api firebaseDependencies.firestore
     api appDependencies.gson
     api appDependencies.okHttp
     api appDependencies.okHttpLogger

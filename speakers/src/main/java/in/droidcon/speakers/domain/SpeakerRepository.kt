@@ -7,5 +7,5 @@ interface SpeakerRepository {
 
     fun getSpeakers(): Single<List<SpeakerEntity>>
 
-    fun getOneSpeaker(id: String): Single<SpeakerEntity>
+    fun getOneSpeaker(speakerId: String): Single<SpeakerEntity>
 }

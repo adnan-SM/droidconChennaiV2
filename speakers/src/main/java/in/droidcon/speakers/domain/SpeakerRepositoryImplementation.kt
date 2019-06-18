@@ -31,9 +31,9 @@ class SpeakerRepositoryImplementation : SpeakerRepository, KoinComponent {
 
     override fun getOneSpeaker(speakerId: String): Single<SpeakerEntity> {
         //TODO: Better Implementation
-        return getSpeakers().map {
-            it.find {
-                it.speakerId == speakerId
+        return getSpeakers().map { speakerList ->
+            speakerList.find { speaker ->
+                speaker.speakerId == speakerId
             }
         }
     }

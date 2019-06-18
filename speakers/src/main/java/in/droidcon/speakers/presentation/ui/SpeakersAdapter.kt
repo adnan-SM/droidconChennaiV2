@@ -5,12 +5,13 @@ import `in`.droidcon.speakers.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.view_speaker_item.view.speakerImgView
+import kotlinx.android.synthetic.main.view_speaker_item.view.speakerNameView
+import kotlinx.android.synthetic.main.view_speaker_item.view.speakerOrgView
 
 class SpeakersAdapter(
     private val listItemClickListener: ListItemClickListener):
@@ -28,25 +29,24 @@ class SpeakersAdapter(
 
     inner class SpeakersHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val speakerImgView: ImageView = itemView.findViewById(R.id.speakerImgView)
-        private val speakerNameView: TextView = itemView.findViewById(R.id.speakerNameView)
-        private val speakerOrgView: TextView = itemView.findViewById(R.id.speakerOrgView)
-
         fun bind(speakerItem: SpeakerEntity, position: Int) {
-            speakerNameView.text = speakerItem.speakerName
-            speakerOrgView.text = speakerItem.speakerOrg
-            itemView.setOnClickListener { listItemClickListener.onSpeakerItemClicked(speakerItem) }
-            Glide.with(speakerImgView.context)
-                .load(speakerItem.speakerImg)
-                .placeholder(R.drawable.ic_placeholder)
-                .circleCrop()
-                .error(R.drawable.ic_placeholder)
-                .into(speakerImgView)
+            with(itemView) {
+                speakerNameView.text = speakerItem.speakerName
+                speakerOrgView.text = speakerItem.speakerOrg
+                itemView.setOnClickListener { listItemClickListener.onSpeakerItemClicked(speakerItem) }
+                Glide.with(speakerImgView.context)
+                    .load(speakerItem.speakerImg)
+                    .placeholder(R.drawable.ic_placeholder)
+                    .circleCrop()
+                    .error(R.drawable.ic_placeholder)
+                    .into(speakerImgView)
+            }
         }
     }
 
     companion object {
 
+        @JvmStatic
         private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerEntity>() {
 
             override fun areItemsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
