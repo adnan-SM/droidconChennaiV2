@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers.state
+package `in`.droidcon.base.state
 
 /**
  * @author Adnan A M

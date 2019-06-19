@@ -3,7 +3,7 @@ package `in`.droidcon.speakers.presentation.viewmodels
 import `in`.droidcon.base.core.BaseViewModel
 import `in`.droidcon.base.event.Event
 import `in`.droidcon.speakers.domain.GetAllSpeakers
-import `in`.droidcon.speakers.state.TaskState
+import `in`.droidcon.base.state.TaskState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.addTo

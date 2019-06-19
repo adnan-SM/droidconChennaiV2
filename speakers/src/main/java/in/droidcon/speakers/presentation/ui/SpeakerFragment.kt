@@ -4,7 +4,7 @@ import `in`.droidcon.base.core.BaseFragment
 import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.R
-import `in`.droidcon.speakers.state.TaskState
+import `in`.droidcon.base.state.TaskState
 import `in`.droidcon.speakers.presentation.viewmodels.SpeakerListViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
