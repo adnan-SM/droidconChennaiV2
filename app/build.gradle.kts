@@ -23,7 +23,6 @@ android {
 }
 
 dependencies {
-    //def appDependencies = rootProject . ext . appDependencies
 
     implementation(fileTree("dir" to "libs", "include" to "*.jar"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}")

@@ -1,7 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    //ext.kotlin_version = "1.3.21"
     repositories {
         google()
         mavenCentral()
@@ -16,8 +15,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
-//apply(from = "dependencies.gradle")
 
 allprojects {
     repositories {
