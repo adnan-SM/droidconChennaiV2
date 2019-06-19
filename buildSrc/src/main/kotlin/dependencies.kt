@@ -161,10 +161,10 @@ object DataTestDependencies {
 }
 
 object CacheDependencies {
-    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlinVersion}"
     const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
     const val roomRx = "androidx.room:room-rxjava2:${Versions.roomVersion}"
+    const val roomCoroutinesKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
 }
 
 object CacheTestDependencies {

@@ -1,8 +1,11 @@
 package `in`.droidcon.speakers.remote
 
+import androidx.room.Embedded
+import androidx.room.Entity
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "speakers")
 data class SpeakerModel(
     @SerializedName("id")
     val id: String,
@@ -26,9 +29,11 @@ data class SpeakerModel(
     val profilePicture: String,
 
     @SerializedName("sessions")
+    @Embedded
     val sessions: List<Session>,
 
     @SerializedName("links")
+    @Embedded
     val links: List<Link>,
 
     @SerializedName("isTopSpeaker")

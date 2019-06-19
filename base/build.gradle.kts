@@ -69,6 +69,9 @@ dependencies {
     api(AppDependencies.retrofit)
     api(AppDependencies.retrofitConverter)
     api(AppDependencies.retrofitAdapter)
+    api(CacheDependencies.room)
+    api(CacheDependencies.roomRx)
+    kapt(CacheDependencies.roomCompiler)
 
 
     implementation(fileTree("dir" to "libs", "include" to "*.jar"))
