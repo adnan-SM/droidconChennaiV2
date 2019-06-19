@@ -15,12 +15,14 @@ class SpeakerRepositoryImplementation : SpeakerRepository, KoinComponent {
 
     private val speakerService: SpeakerService by inject()
 
-    val speakersCache: List<SpeakerEntity>? = null
+    var speakersCache: List<SpeakerEntity>? = null
 
     override fun getSpeakers(): Single<List<SpeakerEntity>> {
         return if (speakersCache == null) {
             speakerService.getSpeakers().map {
-                it.map(SpeakerMapper::mapFromRemote)
+                it.map(SpeakerMapper::mapFromRemote).also { speakerList ->
+                    speakersCache = speakerList
+                }
             }
         } else {
             Single.defer {
