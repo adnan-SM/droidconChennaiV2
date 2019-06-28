@@ -11,9 +11,7 @@ import org.koin.standalone.inject
  * @author Adnan A M
  * @since  20/03/19
  */
-class SpeakerRepositoryImplementation : SpeakerRepository, KoinComponent {
-
-    private val speakerService: SpeakerService by inject()
+class SpeakerRepositoryImplementation(private val speakerService: SpeakerService) : SpeakerRepository {
 
     var speakersCache: List<SpeakerEntity>? = null
 

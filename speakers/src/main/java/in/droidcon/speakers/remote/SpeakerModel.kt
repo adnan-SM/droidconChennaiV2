@@ -1,8 +1,9 @@
 package `in`.droidcon.speakers.remote
 
-import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.*
 
+@Serializable
 data class SpeakerModel(
     @SerializedName("id")
     val id: String,
@@ -35,6 +36,7 @@ data class SpeakerModel(
     val isTopSpeaker: Boolean
 )
 
+@Serializable
 data class Session(
     @SerializedName("id")
     val id: Int,
@@ -43,6 +45,7 @@ data class Session(
     val name: String
 )
 
+@Serializable
 data class Link(
     @SerializedName("title")
     val title: String,

@@ -13,8 +13,8 @@ import org.koin.dsl.module.module
 
 val speakersModule = module {
 
-    factory { SpeakerRepositoryImplementation() }
-    factory<SpeakerRepository> { SpeakerRepositoryImplementation() }
+    factory { SpeakerRepositoryImplementation(get()) }
+    factory<SpeakerRepository> { SpeakerRepositoryImplementation(get()) }
     factory { GetAllSpeakers(executionThread = get(), speakerRepository = get()) }
 //    factory { GetOneSpeaker(executionThread = get(), speakerRepository = get()) }
 //    viewModel { SpeakerDetailViewModel(getOneSpeaker = get()) }
