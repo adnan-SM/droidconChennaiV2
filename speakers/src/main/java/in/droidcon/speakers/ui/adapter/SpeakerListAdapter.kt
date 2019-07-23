@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers.presentation.ui
+package `in`.droidcon.speakers.ui.adapter
 
 import `in`.droidcon.data.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.R
@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class SpeakersAdapter(
-    private val listItemClickListener: ListItemClickListener):
-    ListAdapter<SpeakerEntity, SpeakersAdapter.SpeakersHolder>(SPEAKER_COMPARATOR) {
+class SpeakerListAdapter(
+    private val listItemClickListener: ListItemClickListener
+):
+    ListAdapter<SpeakerItem, SpeakerListAdapter.SpeakersHolder>(SPEAKER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpeakersHolder {
         return SpeakersHolder(
@@ -33,7 +34,7 @@ class SpeakersAdapter(
         private val speakerNameView: TextView = itemView.findViewById(R.id.speakerNameView)
         private val speakerOrgView: TextView = itemView.findViewById(R.id.speakerOrgView)
 
-        fun bind(speakerItem: SpeakerEntity, position: Int) {
+        fun bind(speakerItem: SpeakerItem, position: Int) {
             speakerNameView.text = speakerItem.speakerName
             speakerOrgView.text = speakerItem.speakerOrg
             itemView.setOnClickListener { listItemClickListener.onSpeakerItemClicked(speakerItem) }
@@ -48,13 +49,13 @@ class SpeakersAdapter(
 
     companion object {
 
-        private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerEntity>() {
+        private val SPEAKER_COMPARATOR = object : DiffUtil.ItemCallback<SpeakerItem>() {
 
-            override fun areItemsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
+            override fun areItemsTheSame(oldItem: SpeakerItem, newItem: SpeakerItem): Boolean {
                 return oldItem.speakerName == newItem.speakerName
             }
 
-            override fun areContentsTheSame(oldItem: SpeakerEntity, newItem: SpeakerEntity): Boolean {
+            override fun areContentsTheSame(oldItem: SpeakerItem, newItem: SpeakerItem): Boolean {
                 return oldItem == newItem
             }
 
@@ -62,6 +63,6 @@ class SpeakersAdapter(
     }
 
     interface ListItemClickListener {
-        fun onSpeakerItemClicked(speakerItem: SpeakerEntity)
+        fun onSpeakerItemClicked(speakerItem: SpeakerItem)
     }
 }

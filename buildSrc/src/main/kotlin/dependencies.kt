@@ -47,7 +47,7 @@ object Versions {
     const val glideVersion = "4.9.0"
 
     // epoxy
-    const val epoxyVersion = "3.1.0"
+    const val epoxyVersion = "3.7.0"
 
     // lottie
     const val lottieVersion = "2.8.0"
@@ -67,12 +67,14 @@ object Versions {
 
     const val gradlePlugin = "3.3.2"
     const val googleServices = "4.2.0"
+    const val butterknifeVersion = "10.1.0"
 }
 
 object BuildPlugins {
     const val android = "com.android.tools.build:gradle:${Versions.gradlePlugin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServices}"
+    const val butterKnife = "com.jakewharton:butterknife-gradle-plugin:${Versions.butterknifeVersion}"
 }
 
 object AppDependencies {
@@ -101,6 +103,7 @@ object AppDependencies {
     const val debugDb = "com.amitshekhar.android:debug-db:${Versions.debugDbVersion}"
     const val skeleton = "com.ethanhua:skeleton:${Versions.skeletonVersion}"
     const val shimmer = "io.supercharge:shimmerlayout:${Versions.shimmerVersion}"
+    const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.appCompatVersion}"
 
 }
 

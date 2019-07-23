@@ -1,4 +1,4 @@
-package `in`.droidcon.base.core
+package `in`.droidcon.base.extension
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot

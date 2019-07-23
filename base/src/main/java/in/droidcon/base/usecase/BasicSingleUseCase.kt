@@ -1,4 +1,4 @@
-package `in`.droidcon.base.core
+package `in`.droidcon.base.usecase
 
 import `in`.droidcon.base.thread.ExecutionThread
 import io.reactivex.Single

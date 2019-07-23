@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers.presentation.viewmodels
+package `in`.droidcon.speakers.presentation
 
 import `in`.droidcon.base.core.BaseViewModel
 import `in`.droidcon.base.event.Event

@@ -1,12 +1,11 @@
 package `in`.droidcon.speakers.domain
 
-import `in`.droidcon.data.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.model.SpeakerItem
 import io.reactivex.Single
 
 interface SpeakerRepository {
 
-    fun getSpeakers(): Single<List<SpeakerEntity>>
+    fun getSpeakers(): Single<List<SpeakerItem>>
 
-    fun getOneSpeaker(id: String): Single<SpeakerEntity>
+    fun getOneSpeaker(speakerId: String): Single<SpeakerItem>
 }

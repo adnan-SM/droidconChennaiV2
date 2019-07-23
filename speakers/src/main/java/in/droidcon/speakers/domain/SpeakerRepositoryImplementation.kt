@@ -1,8 +1,10 @@
 package `in`.droidcon.speakers.domain
 
-import `in`.droidcon.base.core.getOneSpeaker
-import `in`.droidcon.base.core.getSpeakerList
+import `in`.droidcon.base.extension.getOneSpeaker
+import `in`.droidcon.base.extension.getSpeakerList
 import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.speakers.extension.mapToDomain
+import `in`.droidcon.speakers.model.SpeakerItem
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
 
@@ -14,15 +16,16 @@ class SpeakerRepositoryImplementation: SpeakerRepository {
 
     private val fireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    override fun getSpeakers(): Single<List<SpeakerEntity>> {
-        return Single.create<List<SpeakerEntity>> { emitter ->
+    override fun getSpeakers(): Single<List<SpeakerItem>> {
+        return Single.create<List<SpeakerItem>> { emitter ->
             fireStore.getSpeakerList()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         task.result?.let { result ->
-                            val list: List<SpeakerEntity> = result.toObjects(SpeakerEntity::class.java)
+                            val list: List<SpeakerItem> = result.toObjects(SpeakerEntity::class.java)
+                                .map { it.mapToDomain() }
                             emitter.onSuccess(list)
-                        } ?: emitter.onSuccess(listOf())
+                        } ?: emitter.onError(Throwable("Speakers not found"))
                     } else {
                         emitter.onError(Throwable(task.exception))
                     }
@@ -30,15 +33,14 @@ class SpeakerRepositoryImplementation: SpeakerRepository {
         }
     }
 
-    override fun getOneSpeaker(speakerId: String): Single<SpeakerEntity> {
-        return Single.create<SpeakerEntity> { emitter ->
+    override fun getOneSpeaker(speakerId: String): Single<SpeakerItem> {
+        return Single.create<SpeakerItem> { emitter ->
             fireStore.getOneSpeaker(speakerId)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         task.result?.let { result ->
-                            val speaker = result.toObject(SpeakerEntity::class.java)
-                            speaker?.let { emitter.onSuccess(it) }
-                                ?: emitter.onError(Throwable("Speaker not found"))
+                            val speaker = result.toObject(SpeakerEntity::class.java)?.mapToDomain()
+                            speaker?.let { emitter.onSuccess(it) } ?: emitter.onError(Throwable("Speaker not found"))
                         }
                     } else {
                         emitter.onError(Throwable(task.exception))
