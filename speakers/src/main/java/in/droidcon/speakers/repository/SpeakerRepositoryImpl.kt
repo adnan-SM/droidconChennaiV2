@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers.domain
+package `in`.droidcon.speakers.repository
 
 import `in`.droidcon.base.extension.getOneSpeaker
 import `in`.droidcon.base.extension.getSpeakerList
@@ -12,7 +12,7 @@ import io.reactivex.Single
  * @author Adnan A M
  * @since  20/03/19
  */
-class SpeakerRepositoryImplementation: SpeakerRepository {
+class SpeakerRepositoryImpl: SpeakerRepository {
 
     private val fireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
 

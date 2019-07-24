@@ -1,4 +1,4 @@
-package `in`.droidcon.speakers.domain
+package `in`.droidcon.speakers.repository
 
 import `in`.droidcon.speakers.model.SpeakerItem
 import io.reactivex.Single

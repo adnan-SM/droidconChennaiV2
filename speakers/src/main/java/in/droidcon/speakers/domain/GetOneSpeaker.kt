@@ -2,6 +2,7 @@ package `in`.droidcon.speakers.domain
 
 import `in`.droidcon.base.thread.ExecutionThread
 import `in`.droidcon.base.usecase.SingleUseCase
+import `in`.droidcon.speakers.repository.SpeakerRepository
 import `in`.droidcon.speakers.model.SpeakerItem
 import io.reactivex.Single
 

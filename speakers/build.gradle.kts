@@ -38,11 +38,15 @@ dependencies {
 
     implementation(AppDependencies.appCompat)
     implementation(AppDependencies.legacySupport)
-    testImplementation("junit:junit:4.12")
+    implementation(AppDependencies.epoxy)
+    implementation(AppDependencies.kotlin)
+
+    testImplementation(AppTestDependencies.jUnit)
+    testImplementation(AppTestDependencies.mockito)
+    testImplementation(PresentationTestDependencies.archTest)
     androidTestImplementation(AppTestDependencies.testRunner)
     androidTestImplementation(AppTestDependencies.espresso)
-    implementation(AppDependencies.kotlin)
-    implementation(AppDependencies.epoxy)
+
     kapt(AppDependencies.epoxyProcessor)
 
     implementation(project(":base"))
