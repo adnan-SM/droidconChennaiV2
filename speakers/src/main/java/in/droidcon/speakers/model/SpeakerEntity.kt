@@ -1,4 +1,4 @@
-package `in`.droidcon.data.speakers.model
+package `in`.droidcon.speakers.model
 
 /**
  * Only with the help of default values, we can directly map to objects from

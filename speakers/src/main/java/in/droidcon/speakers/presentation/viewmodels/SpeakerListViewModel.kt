@@ -3,7 +3,7 @@ package `in`.droidcon.speakers.presentation.viewmodels
 import `in`.droidcon.base.core.BaseViewModel
 import `in`.droidcon.base.event.Event
 import `in`.droidcon.speakers.domain.GetAllSpeakers
-import `in`.droidcon.speakers.state.TaskState
+import `in`.droidcon.base.state.TaskState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.addTo
@@ -23,15 +23,15 @@ class SpeakerListViewModel(private val getSpeakers: GetAllSpeakers): BaseViewMod
         getSpeakers.execute()
             .doOnSubscribe {
                 speakersListState.postValue(Event(TaskState.Loading))
-                Timber.i("Firestore loading")
+                Timber.i("API loading")
             }
             .subscribe({ list ->
                 speakersListState.postValue(Event(TaskState.Success(list)))
-                Timber.i("Firestore fetching speakers successful")
+                Timber.i("API fetching speakers successful")
             }, { throwable ->
                 val errorMessage = throwable.message ?: ERROR_MESSAGE
                 speakersListState.postValue(Event(TaskState.Failed(errorMessage)))
-                Timber.i("Firestore fetching speakers failed")
+                Timber.i("API fetching speakers failed")
             })
             .addTo(disposables)
     }

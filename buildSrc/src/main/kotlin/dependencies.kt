@@ -6,7 +6,7 @@ object Versions {
     const val targetSdkVersion = 28
 
     // language
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.3.40"
 
     // dependency injection
     const val koinVersion = "1.0.2"
@@ -60,19 +60,36 @@ object Versions {
 
     // test
     const val jUnitVersion = "4.12"
+    const val jUnit5Version = "5.4.1"
     const val testRunnerVersion = "1.2.0"
     const val espressoVersion = "3.2.0"
-    const val mockitoVersion = "2.0.0-RC3"
+    const val mockitoVersion = "2.21.0"
+    const val mockitoKotlinVersion = "2.1.0"
     const val robolectricVersion = "4.1"
+    const val spekVersion = "2.0.5"
+    const val junit5TestRunnerVersion = "0.2.2"
+    const val androidJunit5BuildPlugin = "1.2.0.0"
 
     const val gradlePlugin = "3.3.2"
     const val googleServices = "4.2.0"
+
+    //remote
+    const val gsonVersion = "2.8.1"
+    const val okHttpVersion = "3.8.1"
+    const val androidAnnotationsVersion = "21.0.3"
+    const val retrofitVersion = "2.3.0"
 }
 
 object BuildPlugins {
     const val android = "com.android.tools.build:gradle:${Versions.gradlePlugin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServices}"
+    const val androidjunit5 = "de.mannodermaus.gradle.plugins:android-junit5:${Versions.androidJunit5BuildPlugin}"
+    const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlinVersion}"
+}
+
+object Repositories {
+    const val spekFramework = "https://dl.bintray.com/spekframework/spek"
 }
 
 object AppDependencies {
@@ -101,6 +118,13 @@ object AppDependencies {
     const val debugDb = "com.amitshekhar.android:debug-db:${Versions.debugDbVersion}"
     const val skeleton = "com.ethanhua:skeleton:${Versions.skeletonVersion}"
     const val shimmer = "io.supercharge:shimmerlayout:${Versions.shimmerVersion}"
+    const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+    const val androidAnnotations = "com.android.support:support-annotations:${Versions.androidAnnotationsVersion}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
+    const val okHttpLogger = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpVersion}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
+    const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
+    const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
 
 }
 
@@ -108,7 +132,16 @@ object AppTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val testRunner = "androidx.test:runner:${Versions.testRunnerVersion}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+    const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlinVersion}"
+    const val spek = "org.spekframework.spek2:spek-dsl-jvm:${Versions.spekVersion}"
+    const val spekRunner = "org.spekframework.spek2:spek-runner-junit5:${Versions.spekVersion}"
+    const val junit5TestRunner = "de.mannodermaus.junit5:android-instrumentation-test-runner:${Versions.junit5TestRunnerVersion}"
+    const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.jUnit5Version}"
+    const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.jUnit5Version}"
+    const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:${Versions.jUnit5Version}"
+    const val junitVintage = "org.junit.vintage:junit-vintage-engine:${Versions.jUnit5Version}"
     const val workTest = "android.arch.work:work-testing:${Versions.workVersion}"
 }
 
@@ -123,7 +156,7 @@ object PresentationDependencies {
 
 object PresentationTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     const val archTest = "androidx.arch.core:core-testing:${Versions.lifecycleVersion}"
 }
@@ -134,7 +167,7 @@ object DomainDependencies {
 
 object DomainTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
 }
 
 object DataDependencies {
@@ -143,7 +176,7 @@ object DataDependencies {
 
 object DataTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
 }
 
@@ -156,7 +189,7 @@ object CacheDependencies {
 
 object CacheTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val roomTest = "androidx.room:room-testing:${Versions.roomVersion}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
     const val coreTest = "androidx.test:core:${Versions.coreTestVersion}"
@@ -169,6 +202,6 @@ object FirebaseDependencies {
 
 object FirebaseTestDependencies {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
-    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoVersion}"
+    const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
 }
 

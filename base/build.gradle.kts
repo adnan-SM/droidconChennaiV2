@@ -25,6 +25,14 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            buildConfigField("String", "BASE_URL", properties["ActualUrl"].toString())
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            buildConfigField("String", "BASE_URL", properties["DummyUrl"].toString())
         }
     }
 
@@ -55,6 +63,13 @@ dependencies {
     kapt(AppDependencies.glide)
     kapt(AppDependencies.archCompiler)
     api(FirebaseDependencies.firestore)
+    api(AppDependencies.gson)
+    api(AppDependencies.okHttp)
+    api(AppDependencies.okHttpLogger)
+    api(AppDependencies.retrofit)
+    api(AppDependencies.retrofitConverter)
+    api(AppDependencies.retrofitAdapter)
+
 
     implementation(fileTree("dir" to "libs", "include" to "*.jar"))
 
