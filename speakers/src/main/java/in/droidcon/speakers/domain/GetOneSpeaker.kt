@@ -1,9 +1,9 @@
 package `in`.droidcon.speakers.domain
 
+import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.thread.ExecutionThread
 import `in`.droidcon.base.usecase.SingleUseCase
 import `in`.droidcon.speakers.repository.SpeakerRepository
-import `in`.droidcon.speakers.model.SpeakerItem
 import io.reactivex.Single
 
 /**
@@ -13,9 +13,9 @@ import io.reactivex.Single
 class GetOneSpeaker(
     executionThread: ExecutionThread,
     private val speakerRepository: SpeakerRepository
-): SingleUseCase<SpeakerItem, GetOneSpeaker.Companion.Params>(executionThread) {
+): SingleUseCase<GridItem, GetOneSpeaker.Companion.Params>(executionThread) {
 
-    public override fun buildUseCase(params: Params): Single<SpeakerItem> {
+    public override fun buildUseCase(params: Params): Single<GridItem> {
         return speakerRepository.getOneSpeaker(params.speakerId)
     }
 

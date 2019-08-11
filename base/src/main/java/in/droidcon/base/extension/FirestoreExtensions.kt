@@ -14,3 +14,13 @@ fun FirebaseFirestore.getOneSpeaker(id: String): Task<DocumentSnapshot> {
         .document(id)
         .get()
 }
+
+fun FirebaseFirestore.getTeamList(): Task<QuerySnapshot> {
+    return this.collection("team").get()
+}
+
+fun FirebaseFirestore.getOneTeamMember(id: String): Task<DocumentSnapshot> {
+    return this.collection("team")
+        .document(id)
+        .get()
+}

@@ -1,11 +1,11 @@
 package `in`.droidcon.speakers.repository
 
-import `in`.droidcon.speakers.model.SpeakerItem
+import `in`.droidcon.base.model.GridItem
 import io.reactivex.Single
 
 interface SpeakerRepository {
 
-    fun getSpeakers(): Single<List<SpeakerItem>>
+    fun getSpeakers(): Single<List<GridItem>>
 
-    fun getOneSpeaker(speakerId: String): Single<SpeakerItem>
+    fun getOneSpeaker(speakerId: String): Single<GridItem>
 }

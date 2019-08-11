@@ -1,12 +1,11 @@
 package `in`.droidcon.speakers.ui.list
 
+import `in`.droidcon.base.adapter.GridListAdapter
 import `in`.droidcon.base.core.BaseFragment
 import `in`.droidcon.base.event.EventObserver
-import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.base.model.GridItem
+import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.speakers.R
-import `in`.droidcon.speakers.model.SpeakerItem
-import `in`.droidcon.speakers.ui.adapter.SpeakerListAdapter
-import `in`.droidcon.speakers.state.TaskState
 import `in`.droidcon.speakers.presentation.SpeakerListViewModel
 import `in`.droidcon.speakers.ui.detail.SpeakerDetailsFragment
 import android.os.Bundle
@@ -25,10 +24,10 @@ import org.koin.core.parameter.parametersOf
  * @author Adnan A M
  * @since  18/03/19
  */
-class SpeakerListFragment : BaseFragment(), SpeakerListAdapter.ListItemClickListener {
+class SpeakerListFragment : BaseFragment(), GridListAdapter.ListItemClickListener {
 
     private val speakersViewModel: SpeakerListViewModel by viewModel()
-    private val speakersAdapter: SpeakerListAdapter by inject { parametersOf(this) }
+    private val speakersAdapter: GridListAdapter by inject { parametersOf(this) }
 
     private lateinit var skeleton: RecyclerViewSkeletonScreen
 
@@ -56,18 +55,16 @@ class SpeakerListFragment : BaseFragment(), SpeakerListAdapter.ListItemClickList
             EventObserver { state ->
                 when (state) {
 
-                    is TaskState.Loading -> {
+                    is ResultState.Loading -> {
                         showSkeleton()
                     }
 
-                    is TaskState.Success<*> -> {
-                        val list = state.result as List<*>
-                        val speakerList = list.map { it as SpeakerItem }
-                        speakersAdapter.submitList(speakerList)
+                    is ResultState.Success<List<GridItem>> -> {
+                        speakersAdapter.submitList(state.result)
                         skeleton.hide()
                     }
 
-                    is TaskState.Failed -> {
+                    is ResultState.Failed -> {
                         skeleton.hide()
                     }
                 }
@@ -77,18 +74,18 @@ class SpeakerListFragment : BaseFragment(), SpeakerListAdapter.ListItemClickList
     private fun showSkeleton() {
         skeleton = Skeleton.bind(speakerListView)
             .adapter(speakersAdapter)
-            .load(R.layout.skeleton_speaker_item)
+            .load(R.layout.skeleton_grid_item)
             .shimmer(true)
             .count(6)
             .color(R.color.textSecondary)
             .show()
     }
 
-    override fun onSpeakerItemClicked(speakerItem: SpeakerItem) {
+    override fun onGridItemClicked(gridItem: GridItem) {
         fragmentManager?.let {
             SpeakerDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putString("speakerId", speakerItem.speakerId)
+                    putString("speakerId", gridItem.gridId)
                 }
                 setTargetFragment(this@SpeakerListFragment, 1)
             }.show(it, tag)
