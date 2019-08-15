@@ -24,3 +24,7 @@ fun FirebaseFirestore.getOneTeamMember(id: String): Task<DocumentSnapshot> {
         .document(id)
         .get()
 }
+
+fun FirebaseFirestore.getEventDetails(): Task<QuerySnapshot> {
+    return this.collection("event").get()
+}
