@@ -3,7 +3,6 @@ package `in`.droidcon.info.team.di
 import `in`.droidcon.info.team.domain.GetAllTeamMembers
 import `in`.droidcon.info.team.domain.GetOneTeamMember
 import `in`.droidcon.info.team.presentation.TeamDetailViewModel
-import `in`.droidcon.info.team.presentation.TeamListViewModel
 import `in`.droidcon.info.team.repository.TeamRepository
 import `in`.droidcon.info.team.repository.TeamRepositoryImpl
 import org.koin.android.viewmodel.ext.koin.viewModel
@@ -16,5 +15,4 @@ val teamModule = module {
     factory { GetAllTeamMembers(executionThread = get(), teamRepository = get()) }
     factory { GetOneTeamMember(executionThread = get(), teamRepository = get()) }
     viewModel { TeamDetailViewModel(getOneTeamMember = get()) }
-    viewModel { TeamListViewModel(getTeam = get()) }
 }

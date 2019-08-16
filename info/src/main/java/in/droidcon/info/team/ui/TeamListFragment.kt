@@ -5,6 +5,7 @@ import `in`.droidcon.base.adapter.GridListAdapter
 import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
+import `in`.droidcon.info.InfoFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import `in`.droidcon.info.R
+import `in`.droidcon.info.common.presentation.InfoViewModel
 import `in`.droidcon.info.team.presentation.TeamListViewModel
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
@@ -27,7 +30,7 @@ import org.koin.core.parameter.parametersOf
  */
 class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
-    private val teamViewModel: TeamListViewModel by viewModel()
+    private lateinit var teamViewModel: InfoViewModel
     private val gridListAdapter: GridListAdapter by inject { parametersOf(this) }
 
     private lateinit var skeleton: RecyclerViewSkeletonScreen
@@ -40,6 +43,7 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        teamViewModel = (parentFragment as InfoFragment).infoViewModel
         setupRecyclerView()
         getSpeakerList()
     }
@@ -53,7 +57,7 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     private fun getSpeakerList() {
         teamViewModel.getTeamListState().observe(viewLifecycleOwner,
-            EventObserver { state ->
+            Observer { state ->
                 when (state) {
 
                     is ResultState.Loading -> {
@@ -61,6 +65,7 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
                     }
 
                     is ResultState.Success<List<GridItem>> -> {
+                        showSkeleton()
                         gridListAdapter.submitList(state.result)
                         skeleton.hide()
                     }

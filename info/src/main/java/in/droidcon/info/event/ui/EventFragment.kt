@@ -4,9 +4,11 @@ package `in`.droidcon.info.event.ui
 import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
+import `in`.droidcon.info.InfoFragment
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.epoxy.controller.InfoController
 import `in`.droidcon.info.common.model.EventEntity
+import `in`.droidcon.info.common.presentation.InfoViewModel
 import `in`.droidcon.info.event.presentation.EventListViewModel
 import `in`.droidcon.info.team.model.TeamEntity
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_event.view.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -25,7 +28,7 @@ import org.koin.core.parameter.parametersOf
 class EventFragment : Fragment(), InfoController.InfoCallbacks {
 
     private val infoController: InfoController by inject { parametersOf(this) }
-    private val eventViewModel: EventListViewModel by inject()
+    private lateinit var eventViewModel: InfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +39,7 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        eventViewModel = (parentFragment as InfoFragment).infoViewModel
         observeViewModel()
         setupRecyclerView(view)
     }
@@ -45,7 +49,7 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
     }
 
     private fun observeViewModel() {
-        eventViewModel.getEventListState().observe(viewLifecycleOwner, EventObserver { result ->
+        eventViewModel.getEventListState().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is ResultState.Loading -> {}
                 is ResultState.Success<List<EventEntity>> -> {

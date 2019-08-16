@@ -18,7 +18,7 @@ class InfoController(private val callbacks: InfoCallbacks) : TypedEpoxyControlle
                 info {
                     id(position)
                     title(item.title)
-                    desc(item.desc + "\n" + item.desc2)
+                    desc(getDescription(item))
                     buttonText(item.buttonText)
                     redirectText(item.redirectText)
                     redirectVisibility(getVisibility(item.redirectText))
@@ -31,6 +31,12 @@ class InfoController(private val callbacks: InfoCallbacks) : TypedEpoxyControlle
 
     private fun getVisibility(value: String?): Int {
         return if (value != null) View.VISIBLE else View.GONE
+    }
+
+    private fun getDescription(item: EventEntity): String {
+        val descLineOne: String = item.desc ?: ""
+        val descLineTwo: String = if (item.desc2.isNullOrEmpty()) "" else "\n${item.desc2}"
+        return descLineOne + descLineTwo
     }
 
     private fun getCallback(data: EventEntity) {
