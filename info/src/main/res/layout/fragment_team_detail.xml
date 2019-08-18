@@ -12,7 +12,7 @@
             android:id="@+id/teamImage"
             android:src="@color/skeleton"
             android:background="@drawable/rounded_image_view"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.5"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
