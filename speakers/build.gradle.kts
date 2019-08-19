@@ -2,11 +2,16 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("kotlin-kapt")
+    id("com.jakewharton.butterknife")
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
     compileSdkVersion(Versions.compileSdkVersion)
-
 
 
     defaultConfig {
@@ -32,10 +37,17 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to "*.jar"))
 
     implementation(AppDependencies.appCompat)
-    testImplementation("junit:junit:4.12")
+    implementation(AppDependencies.legacySupport)
+    implementation(AppDependencies.epoxy)
+    implementation(AppDependencies.kotlin)
+
+    testImplementation(AppTestDependencies.jUnit)
+    testImplementation(AppTestDependencies.mockito)
+    testImplementation(PresentationTestDependencies.archTest)
     androidTestImplementation(AppTestDependencies.testRunner)
     androidTestImplementation(AppTestDependencies.espresso)
-    implementation(AppDependencies.kotlin)
+
+    kapt(AppDependencies.epoxyProcessor)
 
     implementation(project(":base"))
 }

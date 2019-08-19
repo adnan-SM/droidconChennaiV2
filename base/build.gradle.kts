@@ -5,6 +5,10 @@ plugins {
     id("kotlin-kapt")
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 android {
     //def globalConfig = rootProject . extensions . getByName ("ext")
     compileSdkVersion(Versions.compileSdkVersion)
@@ -47,18 +51,19 @@ dependencies {
     api(AppDependencies.constraint)
     api(AppDependencies.ktx)
     api(AppDependencies.glide)
-    api(AppDependencies.epoxy)
     api(AppDependencies.work)
     api(AppDependencies.lottie)
     api(AppDependencies.skeleton)
     api(AppDependencies.shimmer)
-    kapt(AppDependencies.glide)
+    kapt(AppDependencies.glideCompiler)
     kapt(AppDependencies.archCompiler)
+    kapt(AppDependencies.epoxyProcessor)
     api(FirebaseDependencies.firestore)
 
     implementation(fileTree("dir" to "libs", "include" to "*.jar"))
 
     implementation(AppDependencies.appCompat)
+    implementation(AppDependencies.epoxy)
     testImplementation("junit:junit:4.12")
     androidTestImplementation(AppTestDependencies.testRunner)
     androidTestImplementation(AppTestDependencies.espresso)

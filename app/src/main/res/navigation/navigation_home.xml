@@ -6,9 +6,9 @@
             app:startDestination="@id/speakersFragment">
 
     <fragment android:id="@+id/speakersFragment"
-              android:name="in.droidcon.speakers.presentation.ui.SpeakerFragment"
+              android:name="in.droidcon.speakers.ui.list.SpeakerListFragment"
               android:label="fragment_speakers"
-              tools:layout="@layout/fragment_speakers"/>
+              tools:layout="@layout/fragment_speakers_list"/>
 
     <!--<fragment android:id="@+id/scheduleFragment"-->
     <!--android:name="in.droidcon.app.feature.schedule.ScheduleFragment"-->

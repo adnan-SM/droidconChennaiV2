@@ -1,14 +1,15 @@
 package `in`.droidcon.speakers.domain
 
-import `in`.droidcon.base.core.BasicSingleUseCase
 import `in`.droidcon.base.thread.ExecutionThread
-import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.base.usecase.BasicSingleUseCase
+import `in`.droidcon.speakers.repository.SpeakerRepository
+import `in`.droidcon.speakers.model.SpeakerItem
 import io.reactivex.Single
 
 class GetAllSpeakers(executionThread: ExecutionThread, val speakerRepository: SpeakerRepository):
-    BasicSingleUseCase<List<SpeakerEntity>>(executionThread) {
+    BasicSingleUseCase<List<SpeakerItem>>(executionThread) {
 
-    public override fun buildUseCase(): Single<List<SpeakerEntity>> {
+    public override fun buildUseCase(): Single<List<SpeakerItem>> {
         return speakerRepository.getSpeakers()
     }
 }
