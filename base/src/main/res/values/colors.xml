@@ -9,4 +9,5 @@
     <color name="skeleton">#535353</color>
     <color name="textPrimary">#fff</color>
     <color name="colorTwitter">#00aced</color>
+    <color name="titleColor">#a3a3a3</color>
 </resources>

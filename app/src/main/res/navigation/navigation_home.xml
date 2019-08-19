@@ -10,6 +10,11 @@
               android:label="fragment_speakers"
               tools:layout="@layout/fragment_speakers_list"/>
 
+    <fragment android:id="@+id/infoFragment"
+              android:name="in.droidcon.info.InfoFragment"
+              android:label="fragment_info"
+              tools:layout="@layout/fragment_info"/>
+
     <!--<fragment android:id="@+id/scheduleFragment"-->
     <!--android:name="in.droidcon.app.feature.schedule.ScheduleFragment"-->
     <!--android:label="fragment_schedule"-->

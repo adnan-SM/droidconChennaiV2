@@ -2,6 +2,7 @@ package `in`.droidcon.chennai
 
 import `in`.droidcon.base.di.BaseKoin
 import `in`.droidcon.chennai.di.NavigatorKoin
+import `in`.droidcon.info.common.di.InfoKoin
 import `in`.droidcon.speakers.di.SpeakersKoin
 import android.app.Application
 
@@ -25,6 +26,8 @@ class DroidconIndiaApp: Application() {
         BaseKoin.init()
         // Load Speakers DI Module
         SpeakersKoin.init()
+        // Info module
+        InfoKoin.init()
 
     }
 

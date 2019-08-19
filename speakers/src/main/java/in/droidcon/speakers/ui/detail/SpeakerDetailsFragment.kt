@@ -3,7 +3,9 @@ package `in`.droidcon.speakers.ui.detail
 
 import `in`.droidcon.base.common.GlideApp
 import `in`.droidcon.base.core.RoundedBottomSheetDialogFragment
+import `in`.droidcon.base.epoxy.controller.GridDetailController
 import `in`.droidcon.base.event.EventObserver
+import `in`.droidcon.base.model.GridItem
 import android.graphics.Outline
 import android.os.Build
 import android.os.Bundle
@@ -22,20 +24,18 @@ import android.net.Uri
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import `in`.droidcon.speakers.R
-import `in`.droidcon.speakers.model.SpeakerItem
 import `in`.droidcon.speakers.presentation.SpeakerDetailViewModel
-import `in`.droidcon.speakers.state.TaskState
-import `in`.droidcon.speakers.ui.epoxy.controller.SpeakerDetailController
+import `in`.droidcon.base.state.ResultState
 import kotlinx.android.synthetic.main.fragment_speaker_details.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), SpeakerDetailController.SpeakerDetailCallbacks {
+class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailController.GridDetailCallbacks {
 
     private val speakerDetailViewModel: SpeakerDetailViewModel by viewModel()
-    private val speakerController: SpeakerDetailController by inject { parametersOf(this) }
+    private val speakerController: GridDetailController by inject { parametersOf(this) }
     private var speakerId: String? = null
     lateinit var skeleton: RecyclerViewSkeletonScreen
 
@@ -63,14 +63,14 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), SpeakerDetail
     private fun observeSpeaker() {
         speakerDetailViewModel.getSpeakerState().observe(viewLifecycleOwner, EventObserver { state ->
             when (state) {
-                is TaskState.Loading -> { showSkeleton() }
-                is TaskState.Success<*> -> {
-                    val result = state.result as SpeakerItem
-                    setupImage(result.speakerImg)
+                is ResultState.Loading -> { showSkeleton() }
+                is ResultState.Success<GridItem> -> {
+                    val result = state.result
+                    setupImage(result.gridImg)
                     speakerController.setData(result)
                     skeleton.hide()
                 }
-                is TaskState.Failed -> {
+                is ResultState.Failed -> {
                     skeleton.hide()
                 }
             }
@@ -111,15 +111,15 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), SpeakerDetail
     private fun showSkeleton() {
         skeleton = Skeleton.bind(speakerInfoList)
             .adapter(speakerController.adapter)
-            .load(R.layout.skeletion_speaker_info)
+            .load(R.layout.skeletion_info)
             .shimmer(false)
             .count(1)
             .color(R.color.textSecondary)
             .show()
     }
 
-    override fun onTwitterButtonClicked(speakerHandle: String) {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$speakerHandle")))
+    override fun onTwitterButtonClicked(twitterHandle: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$twitterHandle")))
     }
 
 

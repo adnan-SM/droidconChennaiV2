@@ -8,6 +8,6 @@ import org.koin.standalone.StandAloneContext.loadKoinModules
  */
 object SpeakersKoin {
 
-    fun init() = loadKoinModules(speakersModule, viewModelModule)
+    fun init() = loadKoinModules(speakersModule)
 
 }

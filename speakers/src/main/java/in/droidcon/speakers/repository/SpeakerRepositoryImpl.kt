@@ -2,9 +2,9 @@ package `in`.droidcon.speakers.repository
 
 import `in`.droidcon.base.extension.getOneSpeaker
 import `in`.droidcon.base.extension.getSpeakerList
+import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.data.speakers.model.SpeakerEntity
 import `in`.droidcon.speakers.extension.mapToDomain
-import `in`.droidcon.speakers.model.SpeakerItem
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
 
@@ -16,13 +16,13 @@ class SpeakerRepositoryImpl: SpeakerRepository {
 
     private val fireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    override fun getSpeakers(): Single<List<SpeakerItem>> {
-        return Single.create<List<SpeakerItem>> { emitter ->
+    override fun getSpeakers(): Single<List<GridItem>> {
+        return Single.create<List<GridItem>> { emitter ->
             fireStore.getSpeakerList()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         task.result?.let { result ->
-                            val list: List<SpeakerItem> = result.toObjects(SpeakerEntity::class.java)
+                            val list: List<GridItem> = result.toObjects(SpeakerEntity::class.java)
                                 .map { it.mapToDomain() }
                             emitter.onSuccess(list)
                         } ?: emitter.onError(Throwable("Speakers not found"))
@@ -33,8 +33,8 @@ class SpeakerRepositoryImpl: SpeakerRepository {
         }
     }
 
-    override fun getOneSpeaker(speakerId: String): Single<SpeakerItem> {
-        return Single.create<SpeakerItem> { emitter ->
+    override fun getOneSpeaker(speakerId: String): Single<GridItem> {
+        return Single.create<GridItem> { emitter ->
             fireStore.getOneSpeaker(speakerId)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
