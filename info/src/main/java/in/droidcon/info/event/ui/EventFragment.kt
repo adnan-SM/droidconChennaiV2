@@ -1,16 +1,21 @@
 package `in`.droidcon.info.event.ui
 
-
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.info.InfoFragment
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.epoxy.controller.InfoController
 import `in`.droidcon.info.common.model.EventEntity
 import `in`.droidcon.info.common.presentation.InfoViewModel
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_event.view.*
@@ -47,28 +52,51 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
     private fun observeViewModel() {
         eventViewModel.getEventListState().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                is ResultState.Loading -> {}
+                is ResultState.Loading -> {
+                }
                 is ResultState.Success<List<EventEntity>> -> {
                     infoController.setData(result.result)
                 }
-                is ResultState.Failed<String> -> { }
+                is ResultState.Failed<String> -> {
+                }
             }
         })
     }
 
     override fun onCallActionClicked(number: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (!number.isNullOrEmpty()) {
+            val callIntent = Intent(Intent.ACTION_DIAL)
+            callIntent.data = Uri.parse("tel:$number")
+            startActivity(callIntent)
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "No number found. Please call manually",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onUrlClicked(url: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (!url.isNullOrEmpty()) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(browserIntent)
+        } else {
+            Toast.makeText(requireContext(), "Unable to find URL", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onMapClicked(address: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val mapAddress = "http://maps.google.co.in/maps?q=$address"
+        val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapAddress))
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 
     override fun onCopyClicked(copyItem: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+        val clip = ClipData.newPlainText("DroidconWifiPwd", copyItem)
+        clipboard?.primaryClip = clip
+        Toast.makeText(requireContext(), "Wifi Password Copied", Toast.LENGTH_LONG).show()
     }
 }
