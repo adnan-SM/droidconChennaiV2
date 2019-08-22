@@ -9,8 +9,6 @@ import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
 val teamModule = module {
-
-    factory { TeamRepositoryImpl() }
     factory<TeamRepository> { TeamRepositoryImpl() }
     factory { GetAllTeamMembers(executionThread = get(), teamRepository = get()) }
     factory { GetOneTeamMember(executionThread = get(), teamRepository = get()) }

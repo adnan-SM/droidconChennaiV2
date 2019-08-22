@@ -5,6 +5,7 @@ import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.info.common.model.EventEntity
 import `in`.droidcon.info.event.domain.GetAllEventDetails
+import `in`.droidcon.info.sponsors.domain.GetAllSponsors
 import `in`.droidcon.info.team.domain.GetAllTeamMembers
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,19 +18,24 @@ import timber.log.Timber
  */
 class InfoViewModel(
     private val getEventDetails: GetAllEventDetails,
-    private val getTeam: GetAllTeamMembers
+    private val getTeam: GetAllTeamMembers,
+    private val getAllSponsors: GetAllSponsors
 ) : BaseViewModel() {
 
     private val eventDetailsState = MutableLiveData<ResultState<List<EventEntity>, String>>()
 
     private val teamListState = MutableLiveData<ResultState<List<GridItem>, String>>()
+    private val sponsorListState = MutableLiveData<ResultState<List<GridItem>, String>>()
 
     fun getTeamListState(): LiveData<ResultState<List<GridItem>, String>> = teamListState
+
+    fun getSponsorListState(): LiveData<ResultState<List<GridItem>, String>> = sponsorListState
 
     fun getEventListState(): LiveData<ResultState<List<EventEntity>, String>> = eventDetailsState
 
     init {
         getEventDetails()
+        getSponsorList()
         getTeamList()
     }
 
@@ -61,6 +67,23 @@ class InfoViewModel(
                 val errorMessage = throwable.message ?: ERROR_MESSAGE
                 teamListState.postValue(ResultState.Failed(errorMessage))
                 Timber.i("Firestore fetching team failed")
+            })
+            .addTo(disposables)
+    }
+
+    private fun getSponsorList() {
+        getAllSponsors.execute()
+            .doOnSubscribe {
+                sponsorListState.postValue(ResultState.Loading)
+                Timber.i("Firestore loading")
+            }
+            .subscribe({ list ->
+                sponsorListState.postValue(ResultState.Success(list))
+                Timber.i("Firestore fetching sponsors successful")
+            }, { throwable ->
+                val errorMessage = throwable.message ?: ERROR_MESSAGE
+                sponsorListState.postValue(ResultState.Failed(errorMessage))
+                Timber.i("Firestore fetching sponsors failed")
             })
             .addTo(disposables)
     }

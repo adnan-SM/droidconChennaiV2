@@ -28,3 +28,13 @@ fun FirebaseFirestore.getOneTeamMember(id: String): Task<DocumentSnapshot> {
 fun FirebaseFirestore.getEventDetails(): Task<QuerySnapshot> {
     return this.collection("event").get()
 }
+
+fun FirebaseFirestore.getsponsorList(): Task<QuerySnapshot> {
+    return this.collection("sponsors").get()
+}
+
+fun FirebaseFirestore.getOneSponsor(id: String): Task<DocumentSnapshot> {
+    return this.collection("sponsors")
+        .document(id)
+        .get()
+}

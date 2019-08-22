@@ -17,7 +17,7 @@ class GridDetailController(private val callbacks: GridDetailCallbacks): TypedEpo
             id(data.gridId)
             title(data.gridName)
             oneLine(data.gridOrg)
-            blurb(data.gridBlurbs)
+            data.gridBlurbs?.let { blurb(data.gridBlurbs) }
         }
 
         twitterButton {

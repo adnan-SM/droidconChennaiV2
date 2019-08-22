@@ -18,13 +18,13 @@ class SpeakerMapperTest {
         val entity = FactoryOutlet.makeSpeakerEntity()
         val domain = entity.mapToDomain()
 
-        assertEquals(entity.speakerBlurbs, domain.speakerBlurbs)
-        assertEquals(entity.speakerName, domain.speakerName)
-        assertEquals(entity.speakerHandle, domain.speakerHandle)
-        assertEquals(entity.speakerImg, domain.speakerImg)
-        assertEquals(entity.speakerLocation, domain.speakerLocation)
-        assertEquals(entity.speakerOrg, domain.speakerOrg)
-        assertEquals(entity.speakerOneLiner, domain.speakerOneLiner)
+        assertEquals(entity.speakerBlurbs, domain.gridBlurbs)
+        assertEquals(entity.speakerName, domain.gridName)
+        assertEquals(entity.speakerHandle, domain.gridHandle)
+        assertEquals(entity.speakerImg, domain.gridImg)
+        assertEquals(entity.speakerLocation, domain.gridLocation)
+        assertEquals(entity.speakerOrg, domain.gridOrg)
+        assertEquals(entity.speakerOneLiner, domain.gridOneLiner)
         assertEquals(entity.talkId, domain.talkId)
     }
 

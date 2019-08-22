@@ -18,7 +18,7 @@ data class GridItem(
 
     val gridHandle: String,
 
-    val gridBlurbs: String,
+    val gridBlurbs: String?,
 
     val gridImg: String,
 
