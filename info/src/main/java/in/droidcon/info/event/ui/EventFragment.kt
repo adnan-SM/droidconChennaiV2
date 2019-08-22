@@ -1,16 +1,12 @@
 package `in`.droidcon.info.event.ui
 
 
-import `in`.droidcon.base.event.EventObserver
-import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.info.InfoFragment
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.epoxy.controller.InfoController
 import `in`.droidcon.info.common.model.EventEntity
 import `in`.droidcon.info.common.presentation.InfoViewModel
-import `in`.droidcon.info.event.presentation.EventListViewModel
-import `in`.droidcon.info.team.model.TeamEntity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

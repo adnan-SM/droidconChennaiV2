@@ -1,27 +1,22 @@
 package `in`.droidcon.info.team.ui
 
-
 import `in`.droidcon.base.adapter.GridListAdapter
-import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.info.InfoFragment
+import `in`.droidcon.info.R
+import `in`.droidcon.info.common.presentation.InfoViewModel
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import `in`.droidcon.info.R
-import `in`.droidcon.info.common.presentation.InfoViewModel
-import `in`.droidcon.info.team.presentation.TeamListViewModel
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_team.*
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 /**

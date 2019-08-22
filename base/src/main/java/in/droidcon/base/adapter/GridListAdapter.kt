@@ -28,7 +28,7 @@ class GridListAdapter(
     }
 
     override fun onBindViewHolder(holder: GridListHolder, position: Int) {
-        holder.bind(getItem(position), position)
+        holder.bind(getItem(position))
     }
 
     inner class GridListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,7 +37,7 @@ class GridListAdapter(
         private val gridNameView: TextView = itemView.findViewById(R.id.gridTitleView)
         private val gridOrgView: TextView = itemView.findViewById(R.id.gridSubTitleView)
 
-        fun bind(gridItemItem: GridItem, position: Int) {
+        fun bind(gridItemItem: GridItem) {
             gridNameView.text = gridItemItem.gridName
             gridOrgView.text = gridItemItem.gridOrg
             itemView.setOnClickListener { listItemClickListener.onGridItemClicked(gridItemItem) }
