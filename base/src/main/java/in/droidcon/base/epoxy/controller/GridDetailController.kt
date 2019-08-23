@@ -20,14 +20,25 @@ class GridDetailController(private val callbacks: GridDetailCallbacks): TypedEpo
             data.gridBlurbs?.let { blurb(data.gridBlurbs) }
         }
 
-        twitterButton {
-            id(data.gridId)
-            buttonText("@${data.gridHandle}")
-            clickListener { _ -> callbacks.onTwitterButtonClicked(data.gridHandle) }
+        if (!data.gridHandle.isNullOrEmpty()) {
+            twitterButton {
+                id(data.gridId)
+                buttonText("@${data.gridHandle}")
+                clickListener { _ -> callbacks.onTwitterButtonClicked(data.gridHandle) }
+            }
+        }
+
+        if (!data.gridWebsite.isNullOrEmpty()) {
+            twitterButton {
+                id(data.gridId)
+                buttonText("Website")
+                clickListener { _ -> callbacks.onTwitterButtonClicked(data.gridWebsite) }
+            }
         }
     }
 
     interface GridDetailCallbacks {
         fun onTwitterButtonClicked(twitterHandle: String)
+        fun onWebsiteButtonClicked(websiteAddress: String)
     }
 }

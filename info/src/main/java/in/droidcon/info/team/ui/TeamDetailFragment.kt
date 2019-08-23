@@ -20,6 +20,7 @@ import android.graphics.Outline
 import android.net.Uri
 import android.os.Build
 import android.view.ViewOutlineProvider
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
@@ -121,5 +122,14 @@ class TeamDetailFragment : RoundedBottomSheetDialogFragment(), GridDetailControl
 
     override fun onTwitterButtonClicked(twitterHandle: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$twitterHandle")))
+    }
+
+    override fun onWebsiteButtonClicked(websiteAddress: String) {
+        if (websiteAddress.isNotEmpty()) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteAddress))
+            startActivity(browserIntent)
+        } else {
+            Toast.makeText(requireContext(), "Unable to find URL", Toast.LENGTH_LONG).show()
+        }
     }
 }

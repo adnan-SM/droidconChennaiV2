@@ -4,6 +4,7 @@ package `in`.droidcon.info.sponsors.ui
 import `in`.droidcon.base.adapter.GridListAdapter
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
+import `in`.droidcon.base.view.GridDetailBottomSheet
 import `in`.droidcon.info.InfoFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -86,13 +87,13 @@ class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
     }
 
     override fun onGridItemClicked(gridItem: GridItem) {
-//        fragmentManager?.let {
-//            TeamDetailFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString("speakerId", gridItem.gridId)
-//                }
-//                setTargetFragment(this@SponsorsFragment, 1)
-//            }.show(it, tag)
-//        }
+        fragmentManager?.let {
+            GridDetailBottomSheet().apply {
+                arguments = Bundle().apply {
+                    putParcelable("gridItem", gridItem)
+                }
+                setTargetFragment(this@SponsorsFragment, 1)
+            }.show(it, tag)
+        }
     }
 }

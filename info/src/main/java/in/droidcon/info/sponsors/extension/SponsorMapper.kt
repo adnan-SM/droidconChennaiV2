@@ -14,6 +14,7 @@ fun SponsorsEntity.mapToDomain(): GridItem {
         this.role,
         this.country,
         null,
+        null,
         this.website,
         this.blob,
         this.avatar,

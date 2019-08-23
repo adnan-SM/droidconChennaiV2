@@ -26,13 +26,15 @@ import com.ethanhua.skeleton.Skeleton
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.presentation.SpeakerDetailViewModel
 import `in`.droidcon.base.state.ResultState
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_speaker_details.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailController.GridDetailCallbacks {
+class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(),
+    GridDetailController.GridDetailCallbacks {
 
     private val speakerDetailViewModel: SpeakerDetailViewModel by viewModel()
     private val speakerController: GridDetailController by inject { parametersOf(this) }
@@ -61,20 +63,23 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailCon
     }
 
     private fun observeSpeaker() {
-        speakerDetailViewModel.getSpeakerState().observe(viewLifecycleOwner, EventObserver { state ->
-            when (state) {
-                is ResultState.Loading -> { showSkeleton() }
-                is ResultState.Success<GridItem> -> {
-                    val result = state.result
-                    setupImage(result.gridImg)
-                    speakerController.setData(result)
-                    skeleton.hide()
+        speakerDetailViewModel.getSpeakerState()
+            .observe(viewLifecycleOwner, EventObserver { state ->
+                when (state) {
+                    is ResultState.Loading -> {
+                        showSkeleton()
+                    }
+                    is ResultState.Success<GridItem> -> {
+                        val result = state.result
+                        setupImage(result.gridImg)
+                        speakerController.setData(result)
+                        skeleton.hide()
+                    }
+                    is ResultState.Failed -> {
+                        skeleton.hide()
+                    }
                 }
-                is ResultState.Failed -> {
-                    skeleton.hide()
-                }
-            }
-        })
+            })
     }
 
     private fun setupImage(path: String) {
@@ -122,5 +127,13 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailCon
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$twitterHandle")))
     }
 
-
+    override fun onWebsiteButtonClicked(websiteAddress: String) {
+        if (websiteAddress.isNotEmpty()) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteAddress))
+            startActivity(browserIntent)
+        } else {
+            Toast.makeText(requireContext(), "Unable to find URL", Toast.LENGTH_LONG).show()
+        }
+    }
 }
+

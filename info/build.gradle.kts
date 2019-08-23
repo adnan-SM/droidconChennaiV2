@@ -11,8 +11,8 @@ kapt {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
 
+    compileSdkVersion(Versions.compileSdkVersion)
 
     defaultConfig {
         minSdkVersion(Versions.minSdkVersion)
@@ -30,7 +30,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
 }
 
 dependencies {

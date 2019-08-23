@@ -1,9 +1,18 @@
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
+
 plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
     id("kotlin-android")
     id("kotlin-kapt")
     id("com.jakewharton.butterknife")
+}
+
+androidExtensions {
+    isExperimental = true
+    configure(delegateClosureOf<AndroidExtensionsExtension> {
+        isExperimental = true
+    })
 }
 
 kapt {
@@ -13,8 +22,6 @@ kapt {
 android {
     //def globalConfig = rootProject . extensions . getByName ("ext")
     compileSdkVersion(Versions.compileSdkVersion)
-
-
 
     defaultConfig {
         minSdkVersion(Versions.compileSdkVersion)
@@ -32,7 +39,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
 }
 
 dependencies {

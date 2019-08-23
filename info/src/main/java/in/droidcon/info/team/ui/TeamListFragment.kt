@@ -3,6 +3,7 @@ package `in`.droidcon.info.team.ui
 import `in`.droidcon.base.adapter.GridListAdapter
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
+import `in`.droidcon.base.view.GridDetailBottomSheet
 import `in`.droidcon.info.InfoFragment
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.presentation.InfoViewModel
@@ -84,9 +85,9 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     override fun onGridItemClicked(gridItem: GridItem) {
         fragmentManager?.let {
-            TeamDetailFragment().apply {
+            GridDetailBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putString("speakerId", gridItem.gridId)
+                    putParcelable("gridItem", gridItem)
                 }
                 setTargetFragment(this@TeamListFragment, 1)
             }.show(it, tag)

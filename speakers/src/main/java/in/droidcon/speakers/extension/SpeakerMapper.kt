@@ -15,6 +15,7 @@ fun SpeakerEntity.mapToDomain(): GridItem {
         this.speakerLocation,
         this.speakerOneLiner,
         this.speakerHandle,
+        null,
         this.speakerBlurbs,
         this.speakerImg,
         this.talkId
