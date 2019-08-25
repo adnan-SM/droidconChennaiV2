@@ -35,6 +35,7 @@ dependencies {
     implementation(project(":speakers"))
     implementation(project(":home"))
     implementation(project(":base"))
+    implementation(project(":database"))
 }
 
 apply(plugin = "com.google.gms.google-services")

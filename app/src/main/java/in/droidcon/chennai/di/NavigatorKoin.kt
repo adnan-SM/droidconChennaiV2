@@ -1,5 +1,6 @@
 package `in`.droidcon.chennai.di
 
+import `in`.droidcon.database.di.dbModule
 import org.koin.standalone.StandAloneContext.loadKoinModules
 
 /**

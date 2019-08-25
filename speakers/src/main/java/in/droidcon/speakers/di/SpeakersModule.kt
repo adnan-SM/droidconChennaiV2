@@ -11,10 +11,10 @@ import `in`.droidcon.speakers.remote.SpeakerService
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
-val speakersModule = module {
+val speakersModule = module(override=true) {
 
-    factory { SpeakerRepositoryImplementation(get()) }
-    factory<SpeakerRepository> { SpeakerRepositoryImplementation(get()) }
+    factory { SpeakerRepositoryImplementation(get(), get()) }
+    factory<SpeakerRepository> { SpeakerRepositoryImplementation(get(), get()) }
     factory { GetAllSpeakers(executionThread = get(), speakerRepository = get()) }
 //    factory { GetOneSpeaker(executionThread = get(), speakerRepository = get()) }
 //    viewModel { SpeakerDetailViewModel(getOneSpeaker = get()) }

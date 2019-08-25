@@ -48,6 +48,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1")
 
     implementation(project(":base"))
+    implementation(project(":database"))
 
     testImplementation(AppTestDependencies.jUnit)
     androidTestImplementation(AppTestDependencies.testRunner)

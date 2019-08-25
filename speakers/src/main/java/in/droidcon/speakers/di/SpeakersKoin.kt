@@ -1,5 +1,6 @@
 package `in`.droidcon.speakers.di
 
+import `in`.droidcon.database.di.dbModule
 import org.koin.standalone.StandAloneContext.loadKoinModules
 
 /**
@@ -8,6 +9,6 @@ import org.koin.standalone.StandAloneContext.loadKoinModules
  */
 object SpeakersKoin {
 
-    fun init() = loadKoinModules(speakersModule, viewModelModule)
+    fun init() = loadKoinModules(speakersModule, viewModelModule, dbModule)
 
 }
