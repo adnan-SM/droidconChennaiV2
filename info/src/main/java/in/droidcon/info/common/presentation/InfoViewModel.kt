@@ -3,8 +3,9 @@ package `in`.droidcon.info.common.presentation
 import `in`.droidcon.base.core.BaseViewModel
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
-import `in`.droidcon.info.common.model.EventEntity
+import `in`.droidcon.info.common.model.InfoEntity
 import `in`.droidcon.info.event.domain.GetAllEventDetails
+import `in`.droidcon.info.general.domain.GetAllGeneralDetails
 import `in`.droidcon.info.sponsors.domain.GetAllSponsors
 import `in`.droidcon.info.team.domain.GetAllTeamMembers
 import androidx.lifecycle.LiveData
@@ -19,10 +20,12 @@ import timber.log.Timber
 class InfoViewModel(
     private val getEventDetails: GetAllEventDetails,
     private val getTeam: GetAllTeamMembers,
-    private val getAllSponsors: GetAllSponsors
+    private val getAllSponsors: GetAllSponsors,
+    private val getAllGeneralDetails: GetAllGeneralDetails
 ) : BaseViewModel() {
 
-    private val eventDetailsState = MutableLiveData<ResultState<List<EventEntity>, String>>()
+    private val eventDetailsState = MutableLiveData<ResultState<List<InfoEntity>, String>>()
+    private val generalDetailsState = MutableLiveData<ResultState<List<InfoEntity>, String>>()
 
     private val teamListState = MutableLiveData<ResultState<List<GridItem>, String>>()
     private val sponsorListState = MutableLiveData<ResultState<List<GridItem>, String>>()
@@ -31,12 +34,32 @@ class InfoViewModel(
 
     fun getSponsorListState(): LiveData<ResultState<List<GridItem>, String>> = sponsorListState
 
-    fun getEventListState(): LiveData<ResultState<List<EventEntity>, String>> = eventDetailsState
+    fun getEventListState(): LiveData<ResultState<List<InfoEntity>, String>> = eventDetailsState
+
+    fun getGeneralListState(): LiveData<ResultState<List<InfoEntity>, String>> = generalDetailsState
 
     init {
         getEventDetails()
         getSponsorList()
         getTeamList()
+        getGeneralDetails()
+    }
+
+    private fun getGeneralDetails() {
+        getAllGeneralDetails.execute()
+            .doOnSubscribe {
+                generalDetailsState.postValue(ResultState.Loading)
+                Timber.i("Firestore loading")
+            }
+            .subscribe({ list ->
+                generalDetailsState.postValue(ResultState.Success(list))
+                Timber.i("Firestore fetching general details successful")
+            }, { throwable ->
+                val errorMessage = throwable.message ?: ERROR_MESSAGE
+                generalDetailsState.postValue(ResultState.Failed(errorMessage))
+                Timber.i("Firestore fetching general details failed")
+            })
+            .addTo(disposables)
     }
 
     private fun getEventDetails() {
@@ -50,6 +73,8 @@ class InfoViewModel(
                 Timber.i("Firestore fetching event details successful")
             }, { throwable ->
                 val errorMessage = throwable.message ?: ERROR_MESSAGE
+                eventDetailsState.postValue(ResultState.Failed(errorMessage))
+                Timber.i("Firestore fetching event failed")
             })
             .addTo(disposables)
     }

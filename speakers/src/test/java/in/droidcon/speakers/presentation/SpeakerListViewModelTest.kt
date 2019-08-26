@@ -1,9 +1,9 @@
 package `in`.droidcon.speakers.presentation
 
+import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.thread.TestThread
 import `in`.droidcon.speakers.domain.GetAllSpeakers
 import `in`.droidcon.speakers.mock.FactoryOutlet
-import `in`.droidcon.speakers.model.SpeakerItem
 import `in`.droidcon.speakers.repository.SpeakerRepository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.mock
@@ -36,12 +36,12 @@ class SpeakerListViewModelTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
+            MockitoAnnotations.initMocks(this)
         executionThread = TestThread()
         speakerRepository = mock()
         getSpeakers = GetAllSpeakers(executionThread, speakerRepository)
 
-        stubSpeakerResponse(Single.just(listOf(FactoryOutlet.makeSpeakerItem())))
+        stubSpeakerResponse(Single.just(listOf(FactoryOutlet.makeGridItem())))
         speakersViewModel = SpeakerListViewModel(getSpeakers)
     }
 
@@ -55,7 +55,7 @@ class SpeakerListViewModelTest {
         getSpeakers.execute().test().assertComplete()
     }
 
-    private fun stubSpeakerResponse(thisThing: Single<List<SpeakerItem>>) {
+    private fun stubSpeakerResponse(thisThing: Single<List<GridItem>>) {
         whenever(speakerRepository.getSpeakers()).thenReturn(thisThing)
     }
 }

@@ -10,7 +10,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 /**
- * Created by Backbase R&D B.V on 2019-08-16.
+ * Created by Hari on 2019-08-16.
  * Epoxy model for map
  */
 @EpoxyModelClass(layout = R2.layout.layout_map_model)

@@ -4,7 +4,7 @@ import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.info.sponsors.model.SponsorsEntity
 
 /**
- * Created by Backbase R&D B.V on 2019-08-22.
+ * Created by Hari on 2019-08-22.
  * Mapper for sponsors
  */
 fun SponsorsEntity.mapToDomain(): GridItem {

@@ -4,7 +4,7 @@ import `in`.droidcon.base.model.GridItem
 import io.reactivex.Single
 
 /**
- * Created by Backbase R&D B.V on 2019-08-22.
+ * Created by Hari on 2019-08-22.
  * Repository contracts for sponsors
  */
 interface SponsorsRepository {

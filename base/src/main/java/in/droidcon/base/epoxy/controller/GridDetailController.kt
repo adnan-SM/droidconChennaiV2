@@ -16,7 +16,7 @@ class GridDetailController(private val callbacks: GridDetailCallbacks): TypedEpo
         gridInfo {
             id(data.gridId)
             title(data.gridName)
-            oneLine(data.gridOrg)
+            oneLine(data.gridOrg + " | " + data.gridLocation)
             data.gridBlurbs?.let { blurb(data.gridBlurbs) }
         }
 

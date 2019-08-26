@@ -4,7 +4,7 @@ import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.info.InfoFragment
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.epoxy.controller.InfoController
-import `in`.droidcon.info.common.model.EventEntity
+import `in`.droidcon.info.common.model.InfoEntity
 import `in`.droidcon.info.common.presentation.InfoViewModel
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -18,7 +18,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
+import com.ethanhua.skeleton.Skeleton
+import kotlinx.android.synthetic.main.fragment_event.*
 import kotlinx.android.synthetic.main.fragment_event.view.*
+import kotlinx.android.synthetic.main.fragment_event.view.listView
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -30,6 +34,8 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
 
     private val infoController: InfoController by inject { parametersOf(this) }
     private lateinit var eventViewModel: InfoViewModel
+
+    private var skeleton: RecyclerViewSkeletonScreen? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,14 +59,27 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
         eventViewModel.getEventListState().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is ResultState.Loading -> {
+                    showSkeleton()
                 }
-                is ResultState.Success<List<EventEntity>> -> {
+                is ResultState.Success<List<InfoEntity>> -> {
                     infoController.setData(result.result)
+                    skeleton?.hide()
                 }
                 is ResultState.Failed<String> -> {
+                    skeleton?.hide()
                 }
             }
         })
+    }
+
+    private fun showSkeleton() {
+        skeleton = Skeleton.bind(listView)
+            .adapter(infoController.adapter)
+            .load(R.layout.skeletion_info)
+            .shimmer(true)
+            .count(2)
+            .color(R.color.textSecondary)
+            .show()
     }
 
     override fun onCallActionClicked(number: String?) {

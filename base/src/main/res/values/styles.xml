@@ -23,6 +23,8 @@
 
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/dark_transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 

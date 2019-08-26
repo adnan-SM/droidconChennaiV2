@@ -1,7 +1,7 @@
 package `in`.droidcon.info.sponsors.model
 
 /**
- * Created by Backbase R&D B.V on 2019-08-22.
+ * Created by Hari on 2019-08-22.
  * Data class for sponsors
  */
 data class SponsorsEntity(

@@ -7,7 +7,7 @@ import `in`.droidcon.info.sponsors.repository.SponsorsRepository
 import io.reactivex.Single
 
 /**
- * Created by Backbase R&D B.V on 2019-08-22.
+ * Created by Hari on 2019-08-22.
  * Get all sponsors interactors
  */
 class GetAllSponsors(executionThread: ExecutionThread, private val sponsorsRepository: SponsorsRepository):

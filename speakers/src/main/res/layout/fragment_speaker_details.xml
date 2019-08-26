@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -6,26 +6,35 @@
         android:layout_height="match_parent"
         tools:context="in.droidcon.speakers.ui.detail.SpeakerDetailsFragment">
 
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            tools:src="@tools:sample/avatars"
-            android:id="@+id/speakerImage"
-            android:src="@color/skeleton"
-            android:background="@drawable/rounded_image_view"
-            app:layout_constraintHeight_percent="0.4"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/speakerInfoList"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/speakerImage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+            <in.droidcon.base.view.ImageScaleView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    tools:src="@tools:sample/avatars"
+                    android:id="@+id/speakerImage"
+                    android:scaleType="matrix"
+                    app:matrixType="top_center"
+                    android:src="@color/skeleton"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/rounded_image_view" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/speakerInfoList"
+                    android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

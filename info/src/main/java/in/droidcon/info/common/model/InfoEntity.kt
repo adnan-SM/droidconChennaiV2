@@ -6,7 +6,7 @@ package `in`.droidcon.info.common.model
  * firebase firestore
  * https://stackoverflow.com/questions/46633412/firebase-firestore-toobject-with-kotlin?rq=1
  */
-data class EventEntity(
+data class InfoEntity(
 
     val type: String = "",
 

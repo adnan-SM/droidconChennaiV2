@@ -33,20 +33,4 @@ class TeamRepositoryImpl: TeamRepository {
         }
     }
 
-    override fun getOneTeamMember(id: String): Single<GridItem> {
-        return Single.create<GridItem> { emitter ->
-            fireStore.getOneTeamMember(id)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        task.result?.let { result ->
-                            val teamMember = result.toObject(TeamEntity::class.java)?.mapToDomain()
-                            teamMember?.let { emitter.onSuccess(it) } ?: emitter.onError(Throwable("Team Member not found"))
-                        }
-                    } else {
-                        emitter.onError(Throwable(task.exception))
-                    }
-                }
-        }
-    }
-
 }

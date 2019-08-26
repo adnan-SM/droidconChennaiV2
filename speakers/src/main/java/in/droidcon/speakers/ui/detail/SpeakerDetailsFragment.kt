@@ -9,10 +9,6 @@ import `in`.droidcon.base.model.GridItem
 import android.graphics.Outline
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +22,8 @@ import com.ethanhua.skeleton.Skeleton
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.presentation.SpeakerDetailViewModel
 import `in`.droidcon.base.state.ResultState
+import android.app.Dialog
+import android.view.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_speaker_details.*
 
@@ -40,6 +38,11 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(),
     private val speakerController: GridDetailController by inject { parametersOf(this) }
     private var speakerId: String? = null
     lateinit var skeleton: RecyclerViewSkeletonScreen
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        dialog?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        return super.onCreateDialog(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

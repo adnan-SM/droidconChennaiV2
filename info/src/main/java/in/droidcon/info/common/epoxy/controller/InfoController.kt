@@ -2,7 +2,7 @@ package `in`.droidcon.info.common.epoxy.controller
 
 import `in`.droidcon.info.common.epoxy.model.info
 import `in`.droidcon.info.common.epoxy.model.map
-import `in`.droidcon.info.common.model.EventEntity
+import `in`.droidcon.info.common.model.InfoEntity
 import android.view.View
 import com.airbnb.epoxy.TypedEpoxyController
 
@@ -11,9 +11,9 @@ import com.airbnb.epoxy.TypedEpoxyController
  * Info epoxy controller
  */
 class InfoController(private val callbacks: InfoCallbacks) :
-    TypedEpoxyController<List<EventEntity>>() {
+    TypedEpoxyController<List<InfoEntity>>() {
 
-    override fun buildModels(data: List<EventEntity>) {
+    override fun buildModels(data: List<InfoEntity>) {
 
         data.forEachIndexed { position, item ->
             if (item.type != TYPE_LOCATION) {
@@ -43,13 +43,13 @@ class InfoController(private val callbacks: InfoCallbacks) :
         return if (value != null) View.VISIBLE else View.GONE
     }
 
-    private fun getDescription(item: EventEntity): String {
+    private fun getDescription(item: InfoEntity): String {
         val descLineOne: String = item.desc ?: ""
         val descLineTwo: String = if (item.desc2.isNullOrEmpty()) "" else "\n${item.desc2}"
         return descLineOne + descLineTwo
     }
 
-    private fun getCallback(data: EventEntity) {
+    private fun getCallback(data: InfoEntity) {
         when (data.buttonType) {
             BUTTON_TYPE_CALL -> callbacks.onCallActionClicked(data.buttonText)
             BUTTON_TYPE_COPY -> callbacks.onCopyClicked(data.copy)

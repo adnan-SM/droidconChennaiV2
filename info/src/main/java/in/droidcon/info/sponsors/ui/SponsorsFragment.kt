@@ -14,7 +14,6 @@ import android.view.ViewGroup
 
 import `in`.droidcon.info.R
 import `in`.droidcon.info.common.presentation.InfoViewModel
-import `in`.droidcon.info.team.ui.TeamDetailFragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen

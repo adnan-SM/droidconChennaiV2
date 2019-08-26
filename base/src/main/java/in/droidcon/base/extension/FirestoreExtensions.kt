@@ -29,6 +29,10 @@ fun FirebaseFirestore.getEventDetails(): Task<QuerySnapshot> {
     return this.collection("event").get()
 }
 
+fun FirebaseFirestore.getGeneralDetails(): Task<QuerySnapshot> {
+    return this.collection("general").get()
+}
+
 fun FirebaseFirestore.getsponsorList(): Task<QuerySnapshot> {
     return this.collection("sponsors").get()
 }
