@@ -28,6 +28,6 @@ data class GridItem(
 
     val gridImg: String,
 
-    val talkId: List<String>?
+    val talkId: String?
 
 ) : Parcelable

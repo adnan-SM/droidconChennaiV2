@@ -1,4 +1,4 @@
-package `in`.droidcon.data.speakers.model
+package `in`.droidcon.base.model
 
 /**
  * Only with the help of default values, we can directly map to objects from
@@ -23,5 +23,5 @@ data class SpeakerEntity(
 
     val speakerImg: String = "",
 
-    val talkId: List<String> = listOf()
+    val talkId: String = ""
 )

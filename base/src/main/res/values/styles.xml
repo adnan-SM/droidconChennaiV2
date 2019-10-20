@@ -33,4 +33,10 @@
         <item name="android:background">@drawable/bottom_sheet_drawable</item>
     </style>
 
+    <style name="TalkTitleStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

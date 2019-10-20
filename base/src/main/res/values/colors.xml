@@ -6,8 +6,23 @@
     <color name="colorAccentSec">#bb88d8</color>
     <color name="codeGreen">#7ac05e</color>
     <color name="textSecondary">#959595</color>
+    <color name="textSecondaryAlt">#e0e0e0</color>
     <color name="skeleton">#535353</color>
     <color name="textPrimary">#fff</color>
     <color name="colorTwitter">#00aced</color>
     <color name="titleColor">#a3a3a3</color>
+    <color name="android">#3ddc84</color>
+    <color name="firebase">#feca41</color>
+    <color name="android_text">#003300</color>
+    <color name="firebase_text">#725e28</color>
+    <color name="arcore">#b96bc6</color>
+    <color name="arcore_text">#562c5d</color>
+    <color name="keynote">#03dac6</color>
+    <color name="keynote_text">#0c675f</color>
+    <color name="tensorflow">#e35c36</color>
+    <color name="tensorflow_text">#674226</color>
+    <color name="flutter">#5ac6f6</color>
+    <color name="flutter_text">#264d5f</color>
+    <color name="design">#ff77a9</color>
+    <color name="design_text">#8e0038</color>
 </resources>

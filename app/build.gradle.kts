@@ -36,6 +36,7 @@ dependencies {
     implementation(project(":info"))
     implementation(project(":home"))
     implementation(project(":base"))
+    implementation(project(":schedule"))
 }
 
 apply(plugin = "com.google.gms.google-services")

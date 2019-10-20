@@ -28,7 +28,7 @@ import org.koin.core.parameter.parametersOf
  */
 class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
-    private lateinit var sponsorViewModel: InfoViewModel
+    private val sponsorViewModel: InfoViewModel by inject()
     private val gridListAdapter: GridListAdapter by inject { parametersOf(this) }
 
     private lateinit var skeleton: RecyclerViewSkeletonScreen
@@ -41,7 +41,6 @@ class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sponsorViewModel = (parentFragment as InfoFragment).infoViewModel
         setupRecyclerView()
         getSpeakerList()
     }

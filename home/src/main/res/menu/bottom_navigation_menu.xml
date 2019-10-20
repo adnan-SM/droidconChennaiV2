@@ -6,9 +6,9 @@
             android:title="@string/schedule"/>
 
     <item
-            android:id="@+id/favoritesFragment"
-            android:icon="@drawable/ic_star"
-            android:title="@string/favorites"/>
+            android:id="@+id/sponsorsFragment"
+            android:icon="@drawable/ic_rupee"
+            android:title="@string/sponsors"/>
 
     <item
             android:id="@+id/speakersFragment"

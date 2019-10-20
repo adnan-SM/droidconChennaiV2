@@ -33,6 +33,9 @@ dependencies {
     androidTestImplementation(AppTestDependencies.testRunner)
     androidTestImplementation(AppTestDependencies.espresso)
     implementation(project(":base"))
+    implementation(project(":info"))
+    implementation(project(":schedule"))
+    implementation(project(":speakers"))
 
 }
 

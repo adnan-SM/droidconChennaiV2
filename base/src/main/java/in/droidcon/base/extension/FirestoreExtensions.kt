@@ -42,3 +42,17 @@ fun FirebaseFirestore.getOneSponsor(id: String): Task<DocumentSnapshot> {
         .document(id)
         .get()
 }
+
+fun FirebaseFirestore.getDayOneSchedule(): Task<QuerySnapshot> {
+    return this.collection("dayOne").get()
+}
+
+fun FirebaseFirestore.getDayTwoSchedule(): Task<QuerySnapshot> {
+    return this.collection("dayTwo").get()
+}
+
+fun FirebaseFirestore.querySpeakers(talkId: String): Task<QuerySnapshot> {
+    return this.collection("speakers")
+        .whereEqualTo("talkId", talkId)
+        .get()
+}
