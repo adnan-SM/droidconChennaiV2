@@ -1,5 +1,6 @@
 package `in`.droidcon.schedule.epoxy
 
+import `in`.droidcon.base.epoxy.model.event
 import `in`.droidcon.base.epoxy.model.schedule
 import `in`.droidcon.base.epoxy.model.time
 import `in`.droidcon.base.util.CategoryUtil
@@ -14,29 +15,38 @@ import com.airbnb.epoxy.TypedEpoxyController
 class ScheduleController(private val callbacks: ScheduleCallbacks): TypedEpoxyController<List<ScheduleEntity>>() {
 
     override fun buildModels(data: List<ScheduleEntity>) {
-        data.forEach {
+        data.forEachIndexed { index, it ->
+
             time {
-                id(it.hashCode())
+                id(it.time)
                 time(it.time)
             }
-            it.talks.forEach {
-                it?.let { item ->
-                    schedule {
-                        val talk = "${item.duration} | ${item.track}"
-                        val categoryColors = CategoryUtil.categoryMap[item.category]
-                        val speakerNames = item.speakerNames.toString()
-                            .removeSurrounding("[", "]")
-                        id(item.hashCode())
-                        talkTitle(item.title)
-                        speaker(speakerNames)
-                        talkDetails(talk)
-                        category(item.category)
-                        clickListener { _ -> callbacks.onScheduleClicked(item)}
-                        if (categoryColors != null) {
-                            categoryBgColor(categoryColors.bgColor)
-                            categoryTextColor(categoryColors.txtColor)
+
+            if (it.event.isEmpty()) {
+                it.talks.forEach { entity ->
+                    entity?.let { item ->
+                        schedule {
+                            val talk = "${item.duration} | ${item.track}"
+                            val categoryColors = CategoryUtil.categoryMap[item.category]
+                            val speakerNames = item.speakerNames.toString()
+                                .removeSurrounding("[", "]")
+                            id(item.hashCode())
+                            talkTitle(item.title)
+                            speaker(speakerNames)
+                            talkDetails(talk)
+                            category(item.category)
+                            clickListener { _ -> callbacks.onScheduleClicked(item) }
+                            if (categoryColors != null) {
+                                categoryBgColor(categoryColors.bgColor)
+                                categoryTextColor(categoryColors.txtColor)
+                            }
                         }
                     }
+                }
+            } else {
+                event {
+                    id("${it.event}$index")
+                    eventName("< ${it.event.toUpperCase()} />")
                 }
             }
         }

@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class TalkEntity(
 
-    val talkId: String = "",
+    val id: String = "",
 
     val title: String = "",
 
@@ -31,4 +31,5 @@ data class TalkEntity(
     val speakerId: List<String> = listOf(),
 
     val speakerNames: List<String> = listOf()
+
 ) : Parcelable

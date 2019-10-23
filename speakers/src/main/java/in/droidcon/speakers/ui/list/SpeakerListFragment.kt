@@ -39,6 +39,7 @@ class SpeakerListFragment : BaseFragment(), GridListAdapter.ListItemClickListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbarTitle.text = getString(R.string.speakers)
         setupRecyclerView()
         getSpeakerList()
     }
@@ -60,11 +61,16 @@ class SpeakerListFragment : BaseFragment(), GridListAdapter.ListItemClickListene
                     }
 
                     is ResultState.Success<List<GridItem>> -> {
+                        errorView.visibility = View.GONE
                         speakersAdapter.submitList(state.result)
                         skeleton.hide()
                     }
 
                     is ResultState.Failed -> {
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                         skeleton.hide()
                     }
                 }

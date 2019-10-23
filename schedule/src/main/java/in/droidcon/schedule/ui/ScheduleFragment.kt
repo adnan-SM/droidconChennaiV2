@@ -42,7 +42,9 @@ class ScheduleFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbarTitle.text = getString(R.string.schedule)
         val viewPager: ViewPager = view.findViewById(R.id.viewPager)
         viewPager.adapter = ScehduleAdapter(childFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
     }
 }

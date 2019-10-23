@@ -31,14 +31,5 @@ class HomeFragment : BaseFragment() {
     private fun setupBottomNavigation(view: View) {
         val navController = Navigation.findNavController(requireActivity(), R.id.bottomNavFragment)
         view.bottomNavigation.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            toolbarTitle.text =
-                when (destination.id) {
-                    R.id.scheduleFragment -> getString(R.string.schedule)
-                    R.id.speakersFragment -> getString(R.string.speakers)
-                    R.id.sponsorsFragment -> getString(R.string.sponsors)
-                    else -> getString(R.string.app_name)
-                }
-        }
     }
 }

@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_day_one.*
+import kotlinx.android.synthetic.main.fragment_day_one.errorView
+import kotlinx.android.synthetic.main.fragment_day_one.scheduleList
+import kotlinx.android.synthetic.main.fragment_day_two.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -65,12 +68,17 @@ class DayOneFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
                     }
 
                     is ResultState.Success<List<ScheduleEntity>> -> {
+                        errorView.visibility = View.GONE
                         scheduleController.setData(state.result)
                         skeleton.hide()
                     }
 
                     is ResultState.Failed -> {
                         skeleton.hide()
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             })

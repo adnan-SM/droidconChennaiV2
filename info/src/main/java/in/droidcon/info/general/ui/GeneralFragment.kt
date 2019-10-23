@@ -20,7 +20,10 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_event.view.*
+import kotlinx.android.synthetic.main.fragment_event.view.errorView
+import kotlinx.android.synthetic.main.fragment_sponsors.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -47,18 +50,27 @@ class GeneralFragment : Fragment(), InfoController.InfoCallbacks {
     }
 
     private fun setupRecyclerView(view: View) {
-        view.listView.adapter = infoController.adapter
+        view.listView.apply {
+            adapter = infoController.adapter
+            layoutManager = LinearLayoutManager(requireActivity())
+        }
     }
 
     private fun observeViewModel() {
         eventViewModel.getGeneralListState().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is ResultState.Loading -> {
+                    // no implementation yet
                 }
                 is ResultState.Success<List<InfoEntity>> -> {
+                    errorView.visibility = View.GONE
                     infoController.setData(result.result)
                 }
                 is ResultState.Failed<String> -> {
+                    errorView.apply {
+                        text = getString(R.string.error)
+                        visibility = View.VISIBLE
+                    }
                 }
             }
         })

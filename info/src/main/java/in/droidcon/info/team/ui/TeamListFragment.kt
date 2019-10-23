@@ -16,7 +16,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
+import kotlinx.android.synthetic.main.fragment_sponsors.*
 import kotlinx.android.synthetic.main.fragment_team.*
+import kotlinx.android.synthetic.main.fragment_team.errorView
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -61,6 +63,7 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
                     }
 
                     is ResultState.Success<List<GridItem>> -> {
+                        errorView.visibility = View.GONE
                         showSkeleton()
                         gridListAdapter.submitList(state.result)
                         skeleton.hide()
@@ -68,6 +71,10 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
                     is ResultState.Failed -> {
                         skeleton.hide()
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             })

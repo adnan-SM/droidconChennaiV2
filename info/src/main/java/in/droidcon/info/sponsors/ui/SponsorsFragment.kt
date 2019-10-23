@@ -5,7 +5,6 @@ import `in`.droidcon.base.adapter.GridListAdapter
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.base.view.GridDetailBottomSheet
-import `in`.droidcon.info.InfoFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
-import kotlinx.android.synthetic.main.fragment_team.*
+import kotlinx.android.synthetic.main.fragment_sponsors.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -41,12 +40,13 @@ class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbarTitle.text = getString(R.string.sponsors)
         setupRecyclerView()
         getSpeakerList()
     }
 
     private fun setupRecyclerView() {
-        teamListView.apply {
+        sponsorListView.apply {
             layoutManager = GridLayoutManager(requireActivity(), 3)
             adapter = gridListAdapter
         }
@@ -62,6 +62,7 @@ class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
                     }
 
                     is ResultState.Success<List<GridItem>> -> {
+                        errorView.visibility = View.GONE
                         showSkeleton()
                         gridListAdapter.submitList(state.result)
                         skeleton.hide()
@@ -69,13 +70,17 @@ class SponsorsFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
                     is ResultState.Failed -> {
                         skeleton.hide()
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             })
     }
 
     private fun showSkeleton() {
-        skeleton = Skeleton.bind(teamListView)
+        skeleton = Skeleton.bind(sponsorListView)
             .adapter(gridListAdapter)
             .load(R.layout.skeleton_grid_item)
             .shimmer(true)

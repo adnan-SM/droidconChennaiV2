@@ -7,6 +7,8 @@ import com.google.firebase.firestore.DocumentReference
  * firestore response of schedule
  */
 data class ScheduleResponse(
+    val id: Int = 0,
     val time: String = "",
-    val talks: List<DocumentReference> = listOf()
+    val talks: List<DocumentReference>? = null,
+    val event: String = ""
 )

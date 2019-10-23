@@ -9,6 +9,8 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class ScheduleEntity(
+    val order: Int = 0,
     val time: String = "",
-    val talks: List<TalkEntity?> = listOf()
+    val talks: List<TalkEntity?> = listOf(),
+    val event: String = ""
 ) : Parcelable

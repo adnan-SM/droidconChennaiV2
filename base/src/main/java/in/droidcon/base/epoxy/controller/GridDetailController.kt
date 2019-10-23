@@ -32,7 +32,7 @@ class GridDetailController(private val callbacks: GridDetailCallbacks): TypedEpo
             twitterButton {
                 id(data.gridId)
                 buttonText("Website")
-                clickListener { _ -> callbacks.onTwitterButtonClicked(data.gridWebsite) }
+                clickListener { _ -> callbacks.onWebsiteButtonClicked(data.gridWebsite) }
             }
         }
     }

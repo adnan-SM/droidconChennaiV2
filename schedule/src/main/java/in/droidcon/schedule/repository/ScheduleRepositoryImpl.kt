@@ -14,6 +14,9 @@ import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
+import com.google.firebase.firestore.DocumentReference
+import timber.log.Timber
+
 
 /**
  * Created by Hari on 2019-10-12.
@@ -43,20 +46,11 @@ class ScheduleRepositoryImpl(private val fireStore: FirebaseFirestore): Schedule
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         task.result?.let { result ->
-                            val taskList: MutableList<Task<DocumentSnapshot>> = mutableListOf()
-                            val scheduleList: MutableList<ScheduleEntity> = mutableListOf()
-                            val responselist: List<ScheduleResponse> = result.toObjects(ScheduleResponse::class.java)
+                            val responselist: List<ScheduleEntity> =
+                                result.toObjects(ScheduleEntity::class.java)
+                            emitter.onSuccess(responselist)
+                        }
 
-                            responselist.forEach { schedule ->
-                                schedule.talks.forEach { ref -> taskList.add(ref.get()) }
-                                Tasks.whenAllSuccess<Any>(taskList).addOnSuccessListener { list ->
-                                    val mappedTalks = list.map { (it as DocumentSnapshot).toObject(TalkEntity::class.java) }
-                                    scheduleList.add(ScheduleEntity(schedule.time, mappedTalks))
-                                    emitter.onSuccess(scheduleList)
-                                }
-                            }
-
-                        } ?: emitter.onError(Throwable("Schedule not found"))
                     } else {
                         emitter.onError(Throwable(task.exception))
                     }

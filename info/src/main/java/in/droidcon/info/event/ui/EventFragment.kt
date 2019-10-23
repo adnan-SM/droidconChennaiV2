@@ -18,10 +18,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_event.*
-import kotlinx.android.synthetic.main.fragment_event.view.*
+import kotlinx.android.synthetic.main.fragment_event.errorView
 import kotlinx.android.synthetic.main.fragment_event.view.listView
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -52,7 +53,10 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
     }
 
     private fun setupRecyclerView(view: View) {
-        view.listView.adapter = infoController.adapter
+        view.listView.apply {
+            adapter = infoController.adapter
+            layoutManager = LinearLayoutManager(requireActivity())
+        }
     }
 
     private fun observeViewModel() {
@@ -62,11 +66,16 @@ class EventFragment : Fragment(), InfoController.InfoCallbacks {
                     showSkeleton()
                 }
                 is ResultState.Success<List<InfoEntity>> -> {
+                    errorView.visibility = View.GONE
                     infoController.setData(result.result)
                     skeleton?.hide()
                 }
                 is ResultState.Failed<String> -> {
                     skeleton?.hide()
+                    errorView.apply {
+                        text = getString(R.string.error)
+                        visibility = View.VISIBLE
+                    }
                 }
             }
         })

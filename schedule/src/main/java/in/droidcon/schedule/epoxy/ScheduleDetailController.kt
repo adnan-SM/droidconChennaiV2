@@ -4,7 +4,6 @@ import `in`.droidcon.base.epoxy.model.*
 import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.schedule.model.TalkEntity
 import com.airbnb.epoxy.Typed2EpoxyController
-import com.airbnb.epoxy.TypedEpoxyController
 
 /**
  * Created by Hari on 2019-10-13.
@@ -29,18 +28,20 @@ class ScheduleDetailController : Typed2EpoxyController<TalkEntity, List<SpeakerE
             }
         }
 
-        subHeader {
-            id("speaker")
-            title("Speakers")
-            desc("")
-        }
+        if (speaker.isNotEmpty()) {
+            subHeader {
+                id("speaker")
+                title("Speakers")
+                desc("")
+            }
 
-        speaker.forEach {
-            speakerItem {
-                id(it.speakerId)
-                speakerName(it.speakerName)
-                speakerCompany(it.speakerOrg)
-                speakerUrl(it.speakerImg)
+            speaker.forEach {
+                speakerItem {
+                    id(it.speakerId)
+                    speakerName(it.speakerName)
+                    speakerCompany(it.speakerOrg)
+                    speakerUrl(it.speakerImg)
+                }
             }
         }
 

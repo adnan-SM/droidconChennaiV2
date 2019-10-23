@@ -42,7 +42,7 @@ class DayTwoFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getScheduleList()
+        //getScheduleList()
         setupRecyclerView()
     }
 
@@ -67,12 +67,17 @@ class DayTwoFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
                     }
 
                     is ResultState.Success<List<ScheduleEntity>> -> {
+                        errorView.visibility = View.GONE
                         scheduleController.setData(state.result)
                         skeleton.hide()
                     }
 
                     is ResultState.Failed -> {
                         skeleton.hide()
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             })
