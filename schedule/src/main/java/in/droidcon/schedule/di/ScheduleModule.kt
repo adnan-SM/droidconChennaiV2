@@ -1,6 +1,7 @@
 package `in`.droidcon.schedule.di
 
-import `in`.droidcon.schedule.domain.GetAllSchedule
+import `in`.droidcon.schedule.domain.GetDayOneSchedule
+import `in`.droidcon.schedule.domain.GetDayTwoSchedule
 import `in`.droidcon.schedule.domain.QuerySpeakers
 import `in`.droidcon.schedule.epoxy.ScheduleController
 import `in`.droidcon.schedule.epoxy.ScheduleDetailController
@@ -18,9 +19,10 @@ import org.koin.dsl.module.module
 val scheduleModule = module {
     single { FirebaseFirestore.getInstance() }
     factory<ScheduleRepository> { ScheduleRepositoryImpl(get()) }
-    factory { GetAllSchedule(executionThread = get(), scheduleRepository = get()) }
+    factory { GetDayOneSchedule(executionThread = get(), scheduleRepository = get()) }
+    factory { GetDayTwoSchedule(executionThread = get(), scheduleRepository = get()) }
     factory { QuerySpeakers(executionThread = get(), scheduleRepository = get()) }
     factory { (context: ScheduleController.ScheduleCallbacks) ->  ScheduleController(context) }
-    viewModel { ScheduleViewModel(get(), get()) }
-    factory { ScheduleDetailController() }
+    viewModel { ScheduleViewModel(get(), get(), get()) }
+    factory { (context: ScheduleDetailController.ScheduleCallbacks) -> ScheduleDetailController(context) }
 }

@@ -6,6 +6,7 @@ import `in`.droidcon.base.epoxy.BaseEpoxyHolder
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
@@ -33,6 +34,7 @@ abstract class SpeakerItemModel : EpoxyModelWithHolder<SpeakerItemModel.Holder>(
     override fun bind(holder: Holder) {
         holder.speakerName.text = speakerName
         holder.company.text = speakerCompany
+        holder.itemView.setOnClickListener(clickListener)
         Glide.with(holder.speakerView.context)
             .load(speakerUrl)
             .placeholder(R.drawable.ic_placeholder)
@@ -43,13 +45,14 @@ abstract class SpeakerItemModel : EpoxyModelWithHolder<SpeakerItemModel.Holder>(
     }
 
     override fun unbind(holder: Holder) {
-        super.unbind(holder)
+        holder.itemView.setOnClickListener(null)
     }
 
     inner class Holder : BaseEpoxyHolder() {
         val speakerView: ImageView by bind(R.id.speakerView)
         val speakerName: TextView by bind(R.id.speakerName)
         val company: TextView by bind(R.id.company)
+        val itemView: ConstraintLayout by bind(R.id.itemView)
     }
 }
 

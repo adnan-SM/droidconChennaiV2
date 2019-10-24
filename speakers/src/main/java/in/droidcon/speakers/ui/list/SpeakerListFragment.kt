@@ -90,9 +90,7 @@ class SpeakerListFragment : BaseFragment(), GridListAdapter.ListItemClickListene
     override fun onGridItemClicked(gridItem: GridItem) {
         fragmentManager?.let {
             SpeakerDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString("speakerId", gridItem.gridId)
-                }
+                arguments = Bundle().apply { putString("speakerId", gridItem.gridId) }
                 setTargetFragment(this@SpeakerListFragment, 1)
             }.show(it, tag)
         }

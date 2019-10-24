@@ -30,7 +30,7 @@ class DayTwoFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
 
     private val viewModel: ScheduleViewModel by viewModel()
     private val navigator: ScheduleNavigation by inject()
-    private val scheduleController: ScheduleController by inject() { parametersOf(this) }
+    private val scheduleController: ScheduleController by inject { parametersOf(this) }
 
     private lateinit var skeleton: RecyclerViewSkeletonScreen
 
@@ -42,7 +42,7 @@ class DayTwoFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //getScheduleList()
+        getScheduleList()
         setupRecyclerView()
     }
 
@@ -58,7 +58,7 @@ class DayTwoFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
     }
 
     private fun getScheduleList() {
-        viewModel.getScheduleListState().observe(viewLifecycleOwner,
+        viewModel.getDayTwoListState().observe(viewLifecycleOwner,
             EventObserver { state ->
                 when (state) {
 

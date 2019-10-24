@@ -5,6 +5,7 @@ import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.base.util.CategoryUtil
+import `in`.droidcon.speakers.ui.detail.SpeakerDetailsFragment
 import `in`.droidcon.schedule.R
 import `in`.droidcon.schedule.epoxy.ScheduleDetailController
 import `in`.droidcon.schedule.model.TalkEntity
@@ -20,17 +21,18 @@ import com.ethanhua.skeleton.Skeleton
 import kotlinx.android.synthetic.main.fragment_schedule_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 /**
  * Created by Hari on 2019-10-13.
  * Schedule detail fragment
  */
-class ScheduleDetailFragment : BaseFragment() {
+class ScheduleDetailFragment : BaseFragment(), ScheduleDetailController.ScheduleCallbacks {
 
     private val viewModel: ScheduleViewModel by viewModel()
     private var talkEntity: TalkEntity? = null
-    private val controller: ScheduleDetailController by inject()
+    private val controller: ScheduleDetailController by inject { parametersOf(this) }
 
     private lateinit var skeleton: RecyclerViewSkeletonScreen
 
@@ -96,5 +98,14 @@ class ScheduleDetailFragment : BaseFragment() {
             .count(1)
             .color(R.color.textSecondary)
             .show()
+    }
+
+    override fun onSpeakerClicked(speakerId: String) {
+        fragmentManager?.let {
+            SpeakerDetailsFragment().apply {
+                arguments = Bundle().apply { putString("speakerId", speakerId) }
+                setTargetFragment(this@ScheduleDetailFragment, 1)
+            }.show(it, tag)
+        }
     }
 }

@@ -14,7 +14,12 @@ val speakersModule = module {
     factory { SpeakerRepositoryImpl() }
     factory<SpeakerRepository> { SpeakerRepositoryImpl() }
     factory { GetAllSpeakers(executionThread = get(), speakerRepository = get()) }
-    factory { GetOneSpeaker(executionThread = get(), speakerRepository = get()) }
+    factory {
+        GetOneSpeaker(
+            executionThread = get(),
+            speakerRepository = get()
+        )
+    }
     viewModel { SpeakerDetailViewModel(getOneSpeaker = get()) }
     viewModel { SpeakerListViewModel(getSpeakers = get()) }
 }

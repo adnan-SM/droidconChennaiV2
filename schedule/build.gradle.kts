@@ -59,6 +59,7 @@ dependencies {
     kapt(AppDependencies.epoxyProcessor)
 
     implementation(project(":base"))
+    implementation(project(":speakers"))
 }
 repositories {
     mavenCentral()

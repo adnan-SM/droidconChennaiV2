@@ -49,8 +49,7 @@ class ScheduleRepositoryImpl(private val fireStore: FirebaseFirestore): Schedule
                             val responselist: List<ScheduleEntity> =
                                 result.toObjects(ScheduleEntity::class.java)
                             emitter.onSuccess(responselist)
-                        }
-
+                        } ?: emitter.onError(Throwable("Schedule not found"))
                     } else {
                         emitter.onError(Throwable(task.exception))
                     }

@@ -4,7 +4,8 @@ import `in`.droidcon.base.core.BaseViewModel
 import `in`.droidcon.base.event.Event
 import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.base.state.ResultState
-import `in`.droidcon.schedule.domain.GetAllSchedule
+import `in`.droidcon.schedule.domain.GetDayOneSchedule
+import `in`.droidcon.schedule.domain.GetDayTwoSchedule
 import `in`.droidcon.schedule.domain.QuerySpeakers
 import `in`.droidcon.schedule.model.ScheduleEntity
 import androidx.lifecycle.LiveData
@@ -17,18 +18,22 @@ import timber.log.Timber
  * Common viewmodel for schedule
  */
 class ScheduleViewModel(
-    private val getAllSchedule: GetAllSchedule,
+    private val getDayOneSchedule: GetDayOneSchedule,
+    private val getDayTwoSchedule: GetDayTwoSchedule,
     private val querySpeaker: QuerySpeakers
 ) : BaseViewModel() {
 
-    private val scheduleListState = MutableLiveData<Event<ResultState<List<ScheduleEntity>, String>>>()
+    private val dayOneListState = MutableLiveData<Event<ResultState<List<ScheduleEntity>, String>>>()
+    private val dayTwoListState = MutableLiveData<Event<ResultState<List<ScheduleEntity>, String>>>()
     private val speakerListState = MutableLiveData<Event<ResultState<List<SpeakerEntity>, String>>>()
 
-    fun getScheduleListState(): LiveData<Event<ResultState<List<ScheduleEntity>, String>>> = scheduleListState
+    fun getDayOneListState(): LiveData<Event<ResultState<List<ScheduleEntity>, String>>> = dayOneListState
+    fun getDayTwoListState(): LiveData<Event<ResultState<List<ScheduleEntity>, String>>> = dayTwoListState
     fun getSpeakerListState(): LiveData<Event<ResultState<List<SpeakerEntity>, String>>> = speakerListState
 
     init {
-        getSchedlueList()
+        getDayOneList()
+        getDayTwoList()
     }
 
     fun querySpeaker(talkId: String) {
@@ -48,18 +53,35 @@ class ScheduleViewModel(
             .addTo(disposables)
     }
 
-    private fun getSchedlueList() {
-        getAllSchedule.execute()
+    private fun getDayOneList() {
+        getDayOneSchedule.execute()
             .doOnSubscribe {
-                scheduleListState.postValue(Event(ResultState.Loading))
+                dayOneListState.postValue(Event(ResultState.Loading))
                 Timber.i("Firestore loading")
             }
             .subscribe({ list ->
-                scheduleListState.postValue(Event(ResultState.Success(list)))
+                dayOneListState.postValue(Event(ResultState.Success(list)))
                 Timber.i("Firestore fetching schedule successful")
             }, { throwable ->
                 val errorMessage = throwable.message ?: ERROR_MESSAGE
-                scheduleListState.postValue(Event(ResultState.Failed(errorMessage)))
+                dayOneListState.postValue(Event(ResultState.Failed(errorMessage)))
+                Timber.i("Firestore fetching schedule failed")
+            })
+            .addTo(disposables)
+    }
+
+    private fun getDayTwoList() {
+        getDayTwoSchedule.execute()
+            .doOnSubscribe {
+                dayTwoListState.postValue(Event(ResultState.Loading))
+                Timber.i("Firestore loading")
+            }
+            .subscribe({ list ->
+                dayTwoListState.postValue(Event(ResultState.Success(list)))
+                Timber.i("Firestore fetching schedule successful")
+            }, { throwable ->
+                val errorMessage = throwable.message ?: ERROR_MESSAGE
+                dayTwoListState.postValue(Event(ResultState.Failed(errorMessage)))
                 Timber.i("Firestore fetching schedule failed")
             })
             .addTo(disposables)

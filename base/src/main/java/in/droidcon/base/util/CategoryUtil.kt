@@ -15,6 +15,7 @@ object CategoryUtil {
         "ARCore" to CategoryColors(R.color.arcore, R.color.arcore_text, R.drawable.ic_arcore),
         "Tensorflow" to CategoryColors(R.color.tensorflow, R.color.tensorflow_text, R.drawable.tensorflow),
         "Keynote" to CategoryColors(R.color.keynote, R.color.keynote_text, R.drawable.ic_droidcon_mascot),
+        "Open Mic" to CategoryColors(R.color.colorTwitter, R.color.flutter_text, R.drawable.ic_droidcon_mascot),
         "Design" to CategoryColors(R.color.design, R.color.design_text, R.drawable.ic_material)
     )
 

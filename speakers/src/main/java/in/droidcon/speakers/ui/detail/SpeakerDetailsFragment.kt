@@ -1,6 +1,5 @@
 package `in`.droidcon.speakers.ui.detail
 
-
 import `in`.droidcon.base.common.GlideApp
 import `in`.droidcon.base.core.RoundedBottomSheetDialogFragment
 import `in`.droidcon.base.epoxy.controller.GridDetailController
@@ -19,13 +18,14 @@ import android.content.Intent
 import android.net.Uri
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
+import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.presentation.SpeakerDetailViewModel
-import `in`.droidcon.base.state.ResultState
 import android.app.Dialog
 import android.view.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_speaker_details.*
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -111,8 +111,9 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(),
     }
 
     private fun getSpeakerId() {
-        arguments?.let {
-            speakerId = it.getString("speakerId")
+        arguments?.let { bundle ->
+            speakerId = bundle.getString("speakerId")
+            Timber.d("speaker id - $speakerId")
         }
     }
 

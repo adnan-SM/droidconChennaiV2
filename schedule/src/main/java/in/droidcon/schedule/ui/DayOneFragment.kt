@@ -59,7 +59,7 @@ class DayOneFragment : BaseFragment(), ScheduleController.ScheduleCallbacks {
     }
 
     private fun getScheduleList() {
-        viewModel.getScheduleListState().observe(viewLifecycleOwner,
+        viewModel.getDayOneListState().observe(viewLifecycleOwner,
             EventObserver { state ->
                 when (state) {
 

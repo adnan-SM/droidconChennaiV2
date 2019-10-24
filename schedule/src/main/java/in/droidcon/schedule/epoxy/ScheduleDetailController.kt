@@ -9,7 +9,7 @@ import com.airbnb.epoxy.Typed2EpoxyController
  * Created by Hari on 2019-10-13.
  * Schedule detail controller
  */
-class ScheduleDetailController : Typed2EpoxyController<TalkEntity, List<SpeakerEntity>>() {
+class ScheduleDetailController(private val callbacks: ScheduleCallbacks) : Typed2EpoxyController<TalkEntity, List<SpeakerEntity>>() {
 
     override fun buildModels(talk: TalkEntity, speaker: List<SpeakerEntity>) {
 
@@ -41,6 +41,7 @@ class ScheduleDetailController : Typed2EpoxyController<TalkEntity, List<SpeakerE
                     speakerName(it.speakerName)
                     speakerCompany(it.speakerOrg)
                     speakerUrl(it.speakerImg)
+                    clickListener { _ -> callbacks.onSpeakerClicked(it.speakerId) }
                 }
             }
         }
@@ -57,4 +58,7 @@ class ScheduleDetailController : Typed2EpoxyController<TalkEntity, List<SpeakerE
         }
     }
 
+    interface ScheduleCallbacks {
+        fun onSpeakerClicked(speakerId: String)
+    }
 }

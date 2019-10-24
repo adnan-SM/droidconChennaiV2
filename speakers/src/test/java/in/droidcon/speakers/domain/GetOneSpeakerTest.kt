@@ -23,7 +23,8 @@ class GetOneSpeakerTest {
 
     private val speakerRepository: SpeakerRepository = mock()
 
-    private val getOneSpeaker = GetOneSpeaker(executionThread, speakerRepository)
+    private val getOneSpeaker =
+        GetOneSpeaker(executionThread, speakerRepository)
 
     @Test
     fun `get one speaker completes`() {
