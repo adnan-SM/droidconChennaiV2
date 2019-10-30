@@ -27,7 +27,8 @@ fun FirebaseFirestore.getOneTeamMember(id: String): Task<DocumentSnapshot> {
 }
 
 fun FirebaseFirestore.getEventDetails(): Task<QuerySnapshot> {
-    return this.collection("event").get()
+    return this.collection("event")
+        .get()
 }
 
 fun FirebaseFirestore.getGeneralDetails(): Task<QuerySnapshot> {
@@ -35,7 +36,9 @@ fun FirebaseFirestore.getGeneralDetails(): Task<QuerySnapshot> {
 }
 
 fun FirebaseFirestore.getsponsorList(): Task<QuerySnapshot> {
-    return this.collection("sponsors").get()
+    return this.collection("sponsors")
+        .orderBy("order", Query.Direction.ASCENDING)
+        .get()
 }
 
 fun FirebaseFirestore.getOneSponsor(id: String): Task<DocumentSnapshot> {

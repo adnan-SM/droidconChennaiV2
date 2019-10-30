@@ -11,6 +11,8 @@ import com.airbnb.epoxy.Typed2EpoxyController
  */
 class ScheduleDetailController(private val callbacks: ScheduleCallbacks) : Typed2EpoxyController<TalkEntity, List<SpeakerEntity>>() {
 
+    private var speakerHandle: String = ""
+
     override fun buildModels(talk: TalkEntity, speaker: List<SpeakerEntity>) {
 
         talkAbstract {
@@ -43,6 +45,8 @@ class ScheduleDetailController(private val callbacks: ScheduleCallbacks) : Typed
                     speakerUrl(it.speakerImg)
                     clickListener { _ -> callbacks.onSpeakerClicked(it.speakerId) }
                 }
+
+                speakerHandle+="@"+it.speakerHandle+" "
             }
         }
 
@@ -55,10 +59,12 @@ class ScheduleDetailController(private val callbacks: ScheduleCallbacks) : Typed
         twitterButton {
             id("tweet+now")
             buttonText("Tweet Now")
+            clickListener { _ -> callbacks.onTwitterButtonClicked(speakerHandle) }
         }
     }
 
     interface ScheduleCallbacks {
         fun onSpeakerClicked(speakerId: String)
+        fun onTwitterButtonClicked(twitterHandle: String)
     }
 }

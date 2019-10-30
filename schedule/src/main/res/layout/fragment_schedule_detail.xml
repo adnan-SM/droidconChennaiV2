@@ -15,6 +15,7 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:background="@drawable/group_79"
+            app:contentScrim="@color/colorPrimaryDark"
             android:layout_height="match_parent"
             app:titleEnabled="false"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">

@@ -3,19 +3,10 @@ package `in`.droidcon.schedule.repository
 import `in`.droidcon.base.extension.getDayOneSchedule
 import `in`.droidcon.base.extension.getDayTwoSchedule
 import `in`.droidcon.base.extension.querySpeakers
-import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.schedule.model.ScheduleEntity
-import `in`.droidcon.schedule.model.ScheduleResponse
-import `in`.droidcon.schedule.model.TalkEntity
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
-import com.google.firebase.firestore.DocumentReference
-import timber.log.Timber
 
 
 /**

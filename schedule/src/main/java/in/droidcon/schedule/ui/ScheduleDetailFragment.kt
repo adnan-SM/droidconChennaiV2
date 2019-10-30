@@ -5,12 +5,16 @@ import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.base.util.CategoryUtil
-import `in`.droidcon.speakers.ui.detail.SpeakerDetailsFragment
 import `in`.droidcon.schedule.R
 import `in`.droidcon.schedule.epoxy.ScheduleDetailController
 import `in`.droidcon.schedule.model.TalkEntity
 import `in`.droidcon.schedule.presentation.ScheduleViewModel
+import `in`.droidcon.speakers.ui.detail.SpeakerDetailsFragment
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +27,9 @@ import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
+
 
 /**
  * Created by Hari on 2019-10-13.
@@ -108,4 +115,44 @@ class ScheduleDetailFragment : BaseFragment(), ScheduleDetailController.Schedule
             }.show(it, tag)
         }
     }
+
+    override fun onTwitterButtonClicked(twitterHandle: String) {
+        shareTwitter(requireActivity(), "$twitterHandle @droidconIn #droidconIN")
+    }
+
+    /**
+     * Share on Twitter. Using Twitter app if installed or web link otherwise.
+     *
+     * @param activity activity which launches the intent
+     * @param text     text to share
+     * @param hashtags hashtags for tweet without '#' and separated by ','
+     */
+    private fun shareTwitter(activity: Activity, text: String) {
+        val tweetUrl = StringBuilder("https://twitter.com/intent/tweet?text=")
+        tweetUrl.append(if (TextUtils.isEmpty(text)) urlEncode(" ") else urlEncode(text))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tweetUrl.toString()))
+        val matches = activity.packageManager.queryIntentActivities(intent, 0)
+        for (info in matches) {
+            if (info.activityInfo.packageName.toLowerCase().startsWith("com.twitter")) {
+                intent.setPackage(info.activityInfo.packageName)
+            }
+        }
+        activity.startActivity(intent)
+    }
+
+    /**
+     * Convert to UTF-8 text to put it on url format
+     *
+     * @param s text to be converted
+     * @return text on UTF-8 format
+     */
+    private fun urlEncode(s: String): String {
+        try {
+            return URLEncoder.encode(s, "UTF-8")
+        } catch (e: UnsupportedEncodingException) {
+            throw RuntimeException("URLEncoder.encode() failed for $s")
+        }
+
+    }
+
 }

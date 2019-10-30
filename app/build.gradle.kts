@@ -10,13 +10,13 @@ android {
         applicationId = "in.droidcon.chennai"
         minSdkVersion(Versions.compileSdkVersion)
         targetSdkVersion(Versions.compileSdkVersion)
-        versionCode = 1
+        versionCode = 3
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

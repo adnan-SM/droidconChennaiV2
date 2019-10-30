@@ -5,6 +5,7 @@ import `in`.droidcon.base.R2
 import `in`.droidcon.base.epoxy.BaseEpoxyHolder
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.Keep
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
@@ -31,10 +32,10 @@ abstract class ScheduleModel : EpoxyModelWithHolder<ScheduleModel.Holder>() {
     lateinit var category: String
 
     @EpoxyAttribute
-    var categoryBgColor: Int = 0
+    var categoryBgColor: Int = R.color.android
 
     @EpoxyAttribute
-    var categoryTextColor: Int = 0
+    var categoryTextColor: Int = R.color.textSecondary
 
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var clickListener: View.OnClickListener? = null

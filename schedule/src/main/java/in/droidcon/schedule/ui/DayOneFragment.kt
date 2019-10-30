@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_day_two.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
+
 /**
  * A simple [Fragment] subclass.
  */

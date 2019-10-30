@@ -6,6 +6,7 @@ import `in`.droidcon.base.epoxy.model.time
 import `in`.droidcon.base.util.CategoryUtil
 import `in`.droidcon.schedule.model.ScheduleEntity
 import `in`.droidcon.schedule.model.TalkEntity
+import androidx.annotation.Keep
 import com.airbnb.epoxy.TypedEpoxyController
 
 /**

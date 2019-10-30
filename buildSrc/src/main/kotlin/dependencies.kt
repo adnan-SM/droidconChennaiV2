@@ -28,7 +28,7 @@ object Versions {
     const val appCompatVersion = "1.0.0"
     const val materialVersion = "1.1.0-alpha04"
     const val fragmentVersion = "1.0.0"
-    const val constraintVersion = "2.0.0-beta2"
+    const val constraintVersion = "1.1.3"
     const val skeletonVersion = "1.1.2"
     const val shimmerVersion = "2.1.0"
 

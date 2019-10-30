@@ -1,12 +1,14 @@
 package `in`.droidcon.schedule.model
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.android.parcel.Parcelize
 
 /**
  * Created by Hari on 2019-10-12.
  * entity for talks
  */
+@Keep
 @Parcelize
 data class TalkEntity(
 

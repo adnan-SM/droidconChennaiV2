@@ -1,9 +1,12 @@
 package `in`.droidcon.info.sponsors.model
 
+import androidx.annotation.Keep
+
 /**
  * Created by Hari on 2019-08-22.
  * Data class for sponsors
  */
+@Keep
 data class SponsorsEntity(
 
     val id: String = "",
@@ -18,6 +21,8 @@ data class SponsorsEntity(
 
     val avatar: String = "",
 
-    val role: String = ""
+    val role: String = "",
+
+    val order: String = ""
 
 )
