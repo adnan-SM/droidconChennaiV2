@@ -16,11 +16,10 @@
 
             <in.droidcon.base.view.ImageScaleView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:minHeight="200dp"
                     tools:src="@tools:sample/avatars"
                     android:id="@+id/avatarImage"
-                    android:scaleType="matrix"
                     app:matrixType="top_center"
                     android:src="@color/skeleton"
                     android:adjustViewBounds="true"

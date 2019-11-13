@@ -17,16 +17,19 @@ import android.view.ViewOutlineProvider
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import kotlinx.android.synthetic.main.layout_grid_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import java.lang.Exception
 
 /**
  * Created by Hari on 2019-08-23.
  * Common grid bottom sheet for detail view
  */
-class GridDetailBottomSheet : RoundedBottomSheetDialogFragment(), GridDetailController.GridDetailCallbacks {
+class GridDetailBottomSheet : RoundedBottomSheetDialogFragment(),
+    GridDetailController.GridDetailCallbacks {
 
     private val detailController: GridDetailController by inject { parametersOf(this) }
     lateinit var skeleton: RecyclerViewSkeletonScreen
@@ -52,10 +55,11 @@ class GridDetailBottomSheet : RoundedBottomSheetDialogFragment(), GridDetailCont
 
     private fun setupImage(path: String) {
         setupRoundedImage()
-        GlideApp.with(avatarImage.context)
+        GlideApp.with(requireContext())
             .load(path)
             .placeholder(R.color.skeleton)
             .error(R.color.skeleton)
+            .dontAnimate()
             .into(avatarImage)
     }
 

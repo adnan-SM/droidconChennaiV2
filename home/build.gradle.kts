@@ -7,8 +7,8 @@ plugins {
 android {
     compileSdkVersion(Versions.compileSdkVersion)
     defaultConfig {
-        minSdkVersion(Versions.compileSdkVersion)
-        targetSdkVersion(Versions.compileSdkVersion)
+        minSdkVersion(Versions.minSdkVersion)
+        targetSdkVersion(Versions.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
 
@@ -21,6 +21,11 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
 }

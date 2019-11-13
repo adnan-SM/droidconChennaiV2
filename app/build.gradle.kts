@@ -8,9 +8,9 @@ android {
     compileSdkVersion(Versions.compileSdkVersion)
     defaultConfig {
         applicationId = "in.droidcon.chennai"
-        minSdkVersion(Versions.compileSdkVersion)
-        targetSdkVersion(Versions.compileSdkVersion)
-        versionCode = 3
+        minSdkVersion(Versions.minSdkVersion)
+        targetSdkVersion(Versions.targetSdkVersion)
+        versionCode = 5
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,6 +19,11 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
