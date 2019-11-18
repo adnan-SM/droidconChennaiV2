@@ -1,10 +1,13 @@
 package `in`.droidcon.info.team.model
 
+import androidx.annotation.Keep
+
 /**
  * Only with the help of default values, we can directly map to objects from
  * firebase firestore
  * https://stackoverflow.com/questions/46633412/firebase-firestore-toobject-with-kotlin?rq=1
  */
+@Keep
 data class TeamEntity(
 
     val id: String = "",

@@ -1,27 +1,25 @@
 package `in`.droidcon.info.team.ui
 
-
 import `in`.droidcon.base.adapter.GridListAdapter
-import `in`.droidcon.base.event.EventObserver
 import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.state.ResultState
+import `in`.droidcon.base.view.GridDetailBottomSheet
 import `in`.droidcon.info.InfoFragment
+import `in`.droidcon.info.R
+import `in`.droidcon.info.common.presentation.InfoViewModel
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import `in`.droidcon.info.R
-import `in`.droidcon.info.common.presentation.InfoViewModel
-import `in`.droidcon.info.team.presentation.TeamListViewModel
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
+import kotlinx.android.synthetic.main.fragment_sponsors.*
 import kotlinx.android.synthetic.main.fragment_team.*
+import kotlinx.android.synthetic.main.fragment_team.errorView
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 /**
@@ -65,6 +63,7 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
                     }
 
                     is ResultState.Success<List<GridItem>> -> {
+                        errorView.visibility = View.GONE
                         showSkeleton()
                         gridListAdapter.submitList(state.result)
                         skeleton.hide()
@@ -72,6 +71,10 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
                     is ResultState.Failed -> {
                         skeleton.hide()
+                        errorView.apply {
+                            text = getString(R.string.error)
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             })
@@ -89,9 +92,9 @@ class TeamListFragment : Fragment(), GridListAdapter.ListItemClickListener {
 
     override fun onGridItemClicked(gridItem: GridItem) {
         fragmentManager?.let {
-            TeamDetailFragment().apply {
+            GridDetailBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putString("speakerId", gridItem.gridId)
+                    putParcelable("gridItem", gridItem)
                 }
                 setTargetFragment(this@TeamListFragment, 1)
             }.show(it, tag)

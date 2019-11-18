@@ -7,7 +7,7 @@ import `in`.droidcon.info.event.repository.EventRepositoryImpl
 import org.koin.dsl.module.module
 
 /**
- * Created by Backbase R&D B.V on 2019-08-14.
+ * Created by Hari on 2019-08-14.
  * event module for Koin
  */
 val eventModule = module {

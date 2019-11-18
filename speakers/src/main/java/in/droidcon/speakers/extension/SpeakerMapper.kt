@@ -1,7 +1,7 @@
 package `in`.droidcon.speakers.extension
 
 import `in`.droidcon.base.model.GridItem
-import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.base.model.SpeakerEntity
 
 /**
  * Created by Hari on 2019-07-23.
@@ -15,6 +15,7 @@ fun SpeakerEntity.mapToDomain(): GridItem {
         this.speakerLocation,
         this.speakerOneLiner,
         this.speakerHandle,
+        null,
         this.speakerBlurbs,
         this.speakerImg,
         this.talkId

@@ -1,7 +1,7 @@
 package `in`.droidcon.speakers.mock
 
-import `in`.droidcon.data.speakers.model.SpeakerEntity
-import `in`.droidcon.speakers.model.SpeakerItem
+import `in`.droidcon.base.model.GridItem
+import `in`.droidcon.base.model.SpeakerEntity
 
 /**
  * Created by Hari on 2019-07-24.
@@ -23,8 +23,9 @@ object FactoryOutlet {
         )
     }
 
-    fun makeSpeakerItem(): SpeakerItem {
-        return SpeakerItem(
+    fun makeGridItem(): GridItem {
+        return GridItem(
+            MockData.randomString(),
             MockData.randomString(),
             MockData.randomString(),
             MockData.randomString(),

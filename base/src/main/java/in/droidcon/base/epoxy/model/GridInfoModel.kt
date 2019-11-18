@@ -22,13 +22,13 @@ abstract class GridInfoModel: EpoxyModelWithHolder<GridInfoModel.Holder>() {
     lateinit var oneLine: String
 
     @EpoxyAttribute
-    lateinit var blurb: String
+    var blurb: String? = null
 
     override fun bind(holder: Holder) {
         holder.apply {
             titleView.text = title
             oneLineView.text = oneLine
-            blurbView.text = blurb
+            blurb?.let { blurbView.text = it }
         }
     }
 

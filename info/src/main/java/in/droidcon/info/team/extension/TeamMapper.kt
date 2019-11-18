@@ -15,6 +15,7 @@ fun TeamEntity.mapToDomain(): GridItem {
         this.city,
         null,
         this.handle,
+        null,
         this.blob,
         this.avatar,
         null

@@ -1,8 +1,8 @@
 package `in`.droidcon.speakers.repository
 
+import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.speakers.mock.FactoryOutlet
 import `in`.droidcon.speakers.mock.MockData
-import `in`.droidcon.speakers.model.SpeakerItem
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
@@ -21,35 +21,35 @@ class SpeakerDataRepositoryTest {
 
     @Test
     fun `get speakers completes`() {
-        stubSpeakerResponse(Single.just(listOf(FactoryOutlet.makeSpeakerItem())))
+        stubSpeakerResponse(Single.just(listOf(FactoryOutlet.makeGridItem())))
         speakerDataRepository.getSpeakers().test().assertComplete()
     }
 
     @Test
     fun `get speakers returns data`() {
-        val response = listOf(FactoryOutlet.makeSpeakerItem())
+        val response = listOf(FactoryOutlet.makeGridItem())
         stubSpeakerResponse(Single.just(response))
         speakerDataRepository.getSpeakers().test().assertValue(response)
     }
 
     @Test
     fun `get one speaker completes`() {
-        stubSpeakerEntityResponse(Single.just(FactoryOutlet.makeSpeakerItem()))
+        stubSpeakerEntityResponse(Single.just(FactoryOutlet.makeGridItem()))
         speakerDataRepository.getOneSpeaker(MockData.randomString()).test().assertComplete()
     }
 
     @Test
     fun `get one speaker returns data`() {
-        val response = FactoryOutlet.makeSpeakerItem()
+        val response = FactoryOutlet.makeGridItem()
         stubSpeakerEntityResponse(Single.just(response))
         speakerDataRepository.getOneSpeaker(MockData.randomString()).test().assertValue(response)
     }
 
-    private fun stubSpeakerResponse(thisThing: Single<List<SpeakerItem>>) {
+    private fun stubSpeakerResponse(thisThing: Single<List<GridItem>>) {
         whenever(speakerDataRepository.getSpeakers()).thenReturn(thisThing)
     }
 
-    private fun stubSpeakerEntityResponse(thisThing: Single<SpeakerItem>) {
+    private fun stubSpeakerEntityResponse(thisThing: Single<GridItem>) {
         whenever(speakerDataRepository.getOneSpeaker(any())).thenReturn(thisThing)
     }
 }

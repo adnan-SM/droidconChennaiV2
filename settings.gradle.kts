@@ -1,1 +1,1 @@
-include(":app", ":speakers", ":base", ":home", ":info")
+include(":app", ":speakers", ":base", ":home", ":info", ":schedule")

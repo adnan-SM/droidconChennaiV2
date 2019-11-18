@@ -1,9 +1,9 @@
 package `in`.droidcon.speakers.domain
 
+import `in`.droidcon.base.model.GridItem
 import `in`.droidcon.base.thread.ExecutionThread
 import `in`.droidcon.speakers.mock.FactoryOutlet
 import `in`.droidcon.speakers.mock.MockData
-import `in`.droidcon.speakers.model.SpeakerItem
 import `in`.droidcon.speakers.repository.SpeakerRepository
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
@@ -23,23 +23,24 @@ class GetOneSpeakerTest {
 
     private val speakerRepository: SpeakerRepository = mock()
 
-    private val getOneSpeaker = GetOneSpeaker(executionThread, speakerRepository)
+    private val getOneSpeaker =
+        GetOneSpeaker(executionThread, speakerRepository)
 
     @Test
     fun `get one speaker completes`() {
-        stubGetSpeakerResponse(Single.just(FactoryOutlet.makeSpeakerItem()))
+        stubGetSpeakerResponse(Single.just(FactoryOutlet.makeGridItem()))
         getOneSpeaker.buildUseCase(GetOneSpeaker.Companion.Params(MockData.randomString())).test().assertComplete()
     }
 
     @Test
     fun `get one speaker returns values`() {
-        val response = FactoryOutlet.makeSpeakerItem()
+        val response = FactoryOutlet.makeGridItem()
         stubGetSpeakerResponse(Single.just(response))
         getOneSpeaker.buildUseCase(GetOneSpeaker.Companion.Params(MockData.randomString()))
             .test().assertValue(response)
     }
 
-    private fun stubGetSpeakerResponse(thisThing: Single<SpeakerItem>) {
+    private fun stubGetSpeakerResponse(thisThing: Single<GridItem>) {
         whenever(speakerRepository.getOneSpeaker(any())).thenReturn(thisThing)
     }
 }

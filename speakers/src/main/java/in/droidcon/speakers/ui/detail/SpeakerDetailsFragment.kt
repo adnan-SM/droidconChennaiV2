@@ -1,6 +1,5 @@
 package `in`.droidcon.speakers.ui.detail
 
-
 import `in`.droidcon.base.common.GlideApp
 import `in`.droidcon.base.core.RoundedBottomSheetDialogFragment
 import `in`.droidcon.base.epoxy.controller.GridDetailController
@@ -9,10 +8,6 @@ import `in`.droidcon.base.model.GridItem
 import android.graphics.Outline
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,21 +18,31 @@ import android.content.Intent
 import android.net.Uri
 import com.ethanhua.skeleton.RecyclerViewSkeletonScreen
 import com.ethanhua.skeleton.Skeleton
+import `in`.droidcon.base.state.ResultState
 import `in`.droidcon.speakers.R
 import `in`.droidcon.speakers.presentation.SpeakerDetailViewModel
-import `in`.droidcon.base.state.ResultState
+import android.app.Dialog
+import android.view.*
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_speaker_details.*
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailController.GridDetailCallbacks {
+class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(),
+    GridDetailController.GridDetailCallbacks {
 
     private val speakerDetailViewModel: SpeakerDetailViewModel by viewModel()
     private val speakerController: GridDetailController by inject { parametersOf(this) }
     private var speakerId: String? = null
     lateinit var skeleton: RecyclerViewSkeletonScreen
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        dialog?.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        return super.onCreateDialog(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,20 +66,23 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailCon
     }
 
     private fun observeSpeaker() {
-        speakerDetailViewModel.getSpeakerState().observe(viewLifecycleOwner, EventObserver { state ->
-            when (state) {
-                is ResultState.Loading -> { showSkeleton() }
-                is ResultState.Success<GridItem> -> {
-                    val result = state.result
-                    setupImage(result.gridImg)
-                    speakerController.setData(result)
-                    skeleton.hide()
+        speakerDetailViewModel.getSpeakerState()
+            .observe(viewLifecycleOwner, EventObserver { state ->
+                when (state) {
+                    is ResultState.Loading -> {
+                        showSkeleton()
+                    }
+                    is ResultState.Success<GridItem> -> {
+                        val result = state.result
+                        setupImage(result.gridImg)
+                        speakerController.setData(result)
+                        skeleton.hide()
+                    }
+                    is ResultState.Failed -> {
+                        skeleton.hide()
+                    }
                 }
-                is ResultState.Failed -> {
-                    skeleton.hide()
-                }
-            }
-        })
+            })
     }
 
     private fun setupImage(path: String) {
@@ -103,8 +111,9 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailCon
     }
 
     private fun getSpeakerId() {
-        arguments?.let {
-            speakerId = it.getString("speakerId")
+        arguments?.let { bundle ->
+            speakerId = bundle.getString("speakerId")
+            Timber.d("speaker id - $speakerId")
         }
     }
 
@@ -122,5 +131,13 @@ class SpeakerDetailsFragment : RoundedBottomSheetDialogFragment(), GridDetailCon
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$twitterHandle")))
     }
 
-
+    override fun onWebsiteButtonClicked(websiteAddress: String) {
+        if (websiteAddress.isNotEmpty()) {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(websiteAddress))
+            startActivity(browserIntent)
+        } else {
+            Toast.makeText(requireContext(), "Unable to find URL", Toast.LENGTH_LONG).show()
+        }
+    }
 }
+

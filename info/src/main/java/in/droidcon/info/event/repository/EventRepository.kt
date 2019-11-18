@@ -1,6 +1,6 @@
 package `in`.droidcon.info.event.repository
 
-import `in`.droidcon.info.common.model.EventEntity
+import `in`.droidcon.info.common.model.InfoEntity
 import io.reactivex.Single
 
 /**
@@ -9,5 +9,5 @@ import io.reactivex.Single
  */
 interface EventRepository {
 
-    fun getRepositoryDetails(): Single<List<EventEntity>>
+    fun getEventDetails(): Single<List<InfoEntity>>
 }

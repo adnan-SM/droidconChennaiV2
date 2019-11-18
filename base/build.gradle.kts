@@ -1,9 +1,18 @@
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
+
 plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
     id("kotlin-android")
     id("kotlin-kapt")
     id("com.jakewharton.butterknife")
+}
+
+androidExtensions {
+    isExperimental = true
+    configure(delegateClosureOf<AndroidExtensionsExtension> {
+        isExperimental = true
+    })
 }
 
 kapt {
@@ -14,11 +23,9 @@ android {
     //def globalConfig = rootProject . extensions . getByName ("ext")
     compileSdkVersion(Versions.compileSdkVersion)
 
-
-
     defaultConfig {
-        minSdkVersion(Versions.compileSdkVersion)
-        targetSdkVersion(Versions.compileSdkVersion)
+        minSdkVersion(Versions.minSdkVersion)
+        targetSdkVersion(Versions.targetSdkVersion)
         versionCode = 1
         versionName = "1.0"
 
@@ -33,6 +40,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

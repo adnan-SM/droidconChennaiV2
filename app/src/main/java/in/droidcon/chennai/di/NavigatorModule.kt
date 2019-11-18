@@ -1,6 +1,10 @@
 package `in`.droidcon.chennai.di
 
-import `in`.droidcon.chennai.Navigator
+import `in`.droidcon.base.navigation.MainNavigation
+import `in`.droidcon.chennai.navigation.Navigator
+import `in`.droidcon.chennai.navigation.ScheduleNavigator
+import `in`.droidcon.schedule.navigation.ScheduleNavigation
+import org.koin.dsl.definition.Kind
 import org.koin.dsl.module.module
 
 /**
@@ -9,5 +13,7 @@ import org.koin.dsl.module.module
  */
 val navModule = module {
 
-    factory { Navigator() }
+    single<MainNavigation> { Navigator() }
+
+    factory<ScheduleNavigation> { ScheduleNavigator(get()) }
 }

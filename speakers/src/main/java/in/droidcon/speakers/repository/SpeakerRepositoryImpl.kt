@@ -3,7 +3,7 @@ package `in`.droidcon.speakers.repository
 import `in`.droidcon.base.extension.getOneSpeaker
 import `in`.droidcon.base.extension.getSpeakerList
 import `in`.droidcon.base.model.GridItem
-import `in`.droidcon.data.speakers.model.SpeakerEntity
+import `in`.droidcon.base.model.SpeakerEntity
 import `in`.droidcon.speakers.extension.mapToDomain
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single

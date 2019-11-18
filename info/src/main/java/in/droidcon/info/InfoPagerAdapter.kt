@@ -18,9 +18,8 @@ class InfoPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> EventFragment()
-            1 -> SponsorsFragment()
-            2 -> TeamListFragment()
-            3 -> GeneralFragment()
+            1 -> TeamListFragment()
+            2 -> GeneralFragment()
             else -> throw IllegalStateException("no fragment is assigned for position - $position")
         }
     }
@@ -28,12 +27,11 @@ class InfoPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Event"
-            1 -> "Sponsors"
-            2 -> "Team"
-            3 -> "General"
+            1 -> "Team"
+            2 -> "General"
             else -> "Droidcon India"
         }
     }
 
-    override fun getCount(): Int = 4
+    override fun getCount(): Int = 3
 }

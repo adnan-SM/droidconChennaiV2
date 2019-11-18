@@ -11,5 +11,12 @@ import org.koin.dsl.module.module
 
 val infoModule = module {
 
-    viewModel { InfoViewModel(getEventDetails = get(), getTeam = get()) }
+    viewModel {
+        InfoViewModel(
+            getEventDetails = get(),
+            getTeam = get(),
+            getAllSponsors = get(),
+            getAllGeneralDetails = get()
+        )
+    }
 }

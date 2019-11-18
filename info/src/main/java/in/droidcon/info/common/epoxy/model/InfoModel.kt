@@ -3,14 +3,12 @@ package `in`.droidcon.info.common.epoxy.model
 import `in`.droidcon.base.epoxy.BaseEpoxyHolder
 import `in`.droidcon.info.R
 import `in`.droidcon.info.R2
-import `in`.droidcon.info.common.model.EventEntity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
-import org.w3c.dom.Text
 
 /**
  * Created by Hari on 2019-08-14.

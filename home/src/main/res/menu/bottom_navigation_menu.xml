@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/scheduleFragment"
+            android:icon="@drawable/ic_time"
+            android:title="@string/schedule"/>
+
+    <item
+            android:id="@+id/sponsorsFragment"
+            android:icon="@drawable/ic_rupee"
+            android:title="@string/sponsors"/>
+
+    <item
+            android:id="@+id/speakersFragment"
+            android:icon="@drawable/ic_microphone"
+            android:title="@string/speakers"/>
+
+    <item
+            android:id="@+id/infoFragment"
+            android:icon="@drawable/ic_info"
+            android:title="@string/info"/>
+</menu>

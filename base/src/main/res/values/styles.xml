@@ -7,7 +7,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:textColor">@color/textPrimary</item>
     </style>
 
@@ -23,12 +22,20 @@
 
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/dark_transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 
     <!-- set the rounded drawable as background to your bottom sheet -->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_drawable</item>
+    </style>
+
+    <style name="TalkTitleStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>
